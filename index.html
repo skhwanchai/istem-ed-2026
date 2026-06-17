@@ -44,17 +44,19 @@ nav {
 .nav-logo {
   font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700;
   color: var(--text); letter-spacing: -.02em;
-  padding: 14px 0; margin-right: 24px; flex-shrink: 0;
+  padding: 14px 0; flex-shrink: 0;
 }
 .nav-logo span { color: var(--accent2); }
-.nav-tabs { display: flex; gap: 4px; }
+.nav-tabs { display: flex; gap: 4px; margin-left: auto; }
 .nav-tab {
   font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600;
   color: var(--text-dim); padding: 10px 14px; border-radius: 8px;
   cursor: pointer; border: none; background: transparent; transition: all .18s; white-space: nowrap;
 }
-.nav-tab:hover { background: var(--bg); color: var(--text); }
-.nav-tab.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(37,99,235,.25); }
+.nav-tab:hover { background: var(--accent2-bg); color: var(--accent2); }
+.nav-tab.active, .nav-tab.active:hover { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(37,99,235,.25); }
+.nav-tab.active { background: var(--accent2); color: #fff; box-shadow: 0 2px 8px rgba(190,24,93,.3); }
+.nav-tab.active:hover { background: var(--accent2); color: #fff; }
 
 /* ── PAGES ── */
 .page { display: none; }
@@ -267,9 +269,11 @@ footer {
 }
 @media (max-width: 480px) {
   .day-btn { font-size: 11px; padding: 8px 4px; }
+  .nav-inner { padding: 0 12px; }
+  .nav-logo { font-size: 13px; }
+  .nav-tab { font-size: 11px; padding: 9px 10px; }
 }
 @media (max-width: 400px) {
-  .nav-logo { display: none; }
   .search-input { font-size: 13px; }
 }
 </style>
