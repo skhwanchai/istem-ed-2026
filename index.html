@@ -89,11 +89,12 @@ header h1 em { font-style: normal; opacity: .65; }
 
 /* ── SCHEDULE PAGE ── */
 .sched-wrap { max-width: 860px; margin: 32px auto 56px; padding: 0 16px; }
-.day-switcher { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+.day-switcher { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: nowrap; }
 .day-btn {
+  flex: 1; min-width: 0; text-align: center;
   background: var(--white); border: 2px solid var(--border); border-radius: 10px;
-  padding: 9px 18px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600;
-  color: var(--text-dim); cursor: pointer; transition: all .2s;
+  padding: 9px 10px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--text-dim); cursor: pointer; transition: all .2s; white-space: nowrap;
 }
 .day-btn:hover { border-color: var(--accent); color: var(--accent); }
 .day-btn.active { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 4px 12px rgba(37,99,235,.25); }
@@ -181,10 +182,11 @@ header h1 em { font-style: normal; opacity: .65; }
 .result-paper { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: var(--accent); min-width: 76px; padding-top: 2px; }
 .result-info { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .result-badge {
-  display: inline-flex; align-items: center; gap: 4px;
+  display: inline-flex; align-items: center; gap: 5px;
   background: var(--white); border: 1px solid var(--border);
   border-radius: 6px; padding: 3px 9px; font-size: 11px; color: var(--text-dim);
 }
+.result-badge svg { color: var(--accent); flex-shrink: 0; }
 .search-not-found { text-align: center; padding: 20px; color: var(--text-muted); font-size: 13px; }
 
 /* Prog day switcher */
@@ -262,6 +264,9 @@ footer {
   .room-row { flex-direction: row; align-items: flex-start; }
   .room-row-top { flex-direction: column; align-items: flex-start; gap: 4px; width: 170px; flex-shrink: 0; }
   .papers-wrap { padding-top: 2px; flex: 1; }
+}
+@media (max-width: 480px) {
+  .day-btn { font-size: 11px; padding: 8px 4px; }
 }
 @media (max-width: 400px) {
   .nav-logo { display: none; }
@@ -543,14 +548,17 @@ function handleSearch(raw) {
     resultsEl.innerHTML = `<div class="search-not-found">ไม่พบ Paper ID ที่ตรงกับ "<strong>${q}</strong>"</div>`;
     return;
   }
+  const icCal  = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V3a1 1 0 0 1 1-1zM5 9v10h14V9H5z"/></svg>';
+  const icClock= '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10V6a1 1 0 1 0-2 0v6a1 1 0 0 0 .29.71l3 3a1 1 0 0 0 1.42-1.42L13 12z"/></svg>';
+  const icDoor = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2a1 1 0 0 0-1 1v18H4a1 1 0 1 0 0 2h16a1 1 0 1 0 0-2h-1V3a1 1 0 0 0-1-1H6zm9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>';
   let html = `<div class="search-meta">พบ <strong>${matches.length}</strong> รายการ</div>`;
   matches.forEach(m => {
     html += `<div class="result-card">
       <div class="result-paper">${m.pid}</div>
       <div class="result-info">
-        <span class="result-badge">📅 ${m.day}</span>
-        <span class="result-badge">🕐 Session ${m.session} · ${m.time}</span>
-        <span class="result-badge">🚪 ${m.room}</span>
+        <span class="result-badge">${icCal} ${m.day}</span>
+        <span class="result-badge">${icClock} Session ${m.session} · ${m.time}</span>
+        <span class="result-badge">${icDoor} ${m.room}</span>
         <span class="result-badge" style="color:${m.topic.color};border-color:${m.topic.border};background:${m.topic.bg}">${m.topic.short}</span>
       </div>
     </div>`;
