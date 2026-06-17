@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iSTEM-Ed 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f0f4f9;
+  --white: #ffffff;
+  --border: #dde3ee;
+  --text: #1a2033;
+  --text-dim: #5a6480;
+  --text-muted: #9aa3b8;
+  --accent: #2563eb;
+  --accent2: #be185d;
+  --accent2-bg: #fdf2f8;
+  --accent2-border: #fbcfe8;
+  --t1: #2563eb; --t1-bg: #eff6ff; --t1-border: #bfdbfe;
+  --t2: #0d9488; --t2-bg: #f0fdfa; --t2-border: #99f6e4;
+  --t3: #d97706; --t3-bg: #fffbeb; --t3-border: #fde68a;
+  --t4: #7c3aed; --t4-bg: #f5f3ff; --t4-border: #ddd6fe;
+  --t5: #ea580c; --t5-bg: #fff7ed; --t5-border: #fed7aa;
+  --t6: #db2777; --t6-bg: #fdf2f8; --t6-border: #fbcfe8;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.nav-inner {
+  max-width: 1080px; margin: 0 auto; padding: 0 16px;
+  display: flex; align-items: center; gap: 0;
+}
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700;
+  color: var(--text); letter-spacing: -.02em;
+  padding: 14px 0; margin-right: 24px; flex-shrink: 0;
+}
+.nav-logo span { color: var(--accent2); }
+.nav-tabs { display: flex; gap: 4px; }
+.nav-tab {
+  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--text-dim); padding: 10px 14px; border-radius: 8px;
+  cursor: pointer; border: none; background: transparent; transition: all .18s; white-space: nowrap;
+}
+.nav-tab:hover { background: var(--bg); color: var(--text); }
+.nav-tab.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(37,99,235,.25); }
+
+/* ── PAGES ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── HEADER ── */
+header {
+  background: linear-gradient(160deg, #1e3a8a 0%, #1d4ed8 38%, #0891b2 72%, #be185d 100%);
+  padding: 48px 24px 38px; text-align: center; color: white;
+  position: relative; overflow: hidden;
+}
+header::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 28px;
+  background: var(--bg); clip-path: ellipse(55% 100% at 50% 100%);
+}
+.eyebrow {
+  font-family: 'Space Grotesk', sans-serif; font-size: 10px;
+  letter-spacing: .2em; text-transform: uppercase; opacity: .75; margin-bottom: 10px;
+}
+header h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(26px, 6vw, 52px); font-weight: 700;
+  letter-spacing: -.03em; line-height: 1;
+}
+header h1 em { font-style: normal; opacity: .65; }
+.header-sub { margin-top: 8px; font-size: 14px; opacity: .8; }
+.header-pills { margin-top: 16px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.pill {
+  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+  border-radius: 100px; padding: 4px 12px; font-size: 11px; backdrop-filter: blur(4px);
+}
+
+/* ── SCHEDULE PAGE ── */
+.sched-wrap { max-width: 860px; margin: 32px auto 56px; padding: 0 16px; }
+.day-switcher { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+.day-btn {
+  background: var(--white); border: 2px solid var(--border); border-radius: 10px;
+  padding: 9px 18px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--text-dim); cursor: pointer; transition: all .2s;
+}
+.day-btn:hover { border-color: var(--accent); color: var(--accent); }
+.day-btn.active { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 4px 12px rgba(37,99,235,.25); }
+.day-panel { display: none; }
+.day-panel.active { display: block; }
+.sched-timeline { position: relative; }
+.sched-item { margin-bottom: 16px; }
+.sched-item:last-child { margin-bottom: 0; }
+.sched-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; padding: 13px 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05); transition: box-shadow .2s;
+}
+.sched-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,.09); }
+.sched-item.highlight .sched-card {
+  border-color: #bfdbfe;
+  background: linear-gradient(135deg, #f8fbff 0%, #ffffff 100%);
+  box-shadow: 0 2px 10px rgba(37,99,235,.1);
+}
+.sched-time-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.sched-time {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600;
+  color: var(--accent2); background: var(--accent2-bg); border: 1px solid var(--accent2-border);
+  border-radius: 5px; padding: 2px 8px; flex-shrink: 0;
+}
+.sched-highlight-star { font-size: 12px; display: none; }
+.sched-item.highlight .sched-highlight-star { display: inline; }
+.sched-title { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.sched-item.highlight .sched-title { color: var(--accent); }
+.sched-desc { font-size: 12px; color: var(--text-dim); margin-top: 3px; }
+.sched-venue {
+  display: inline-flex; align-items: center; gap: 5px; margin-top: 7px;
+  font-size: 11px; color: var(--text-muted); background: var(--bg);
+  border: 1px solid var(--border); border-radius: 5px; padding: 2px 8px;
+}
+
+/* ── PRESENTATION PROGRAM PAGE ── */
+.section-outer { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+/* Legend */
+.legend-section { margin: 28px 0 0; }
+.section-label {
+  font-family: 'Space Grotesk', sans-serif; font-size: 10px; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;
+}
+.legend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.legend-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+  padding: 9px 12px; display: flex; align-items: flex-start; gap: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.legend-swatch { width: 4px; border-radius: 4px; align-self: stretch; background: var(--tc); flex-shrink: 0; }
+.legend-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12px; color: var(--tc); flex-shrink: 0; margin-top: 1px; }
+.legend-label { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+
+/* Search */
+.search-section { margin: 16px 0 0; }
+.search-box {
+  background: var(--white); border: 2px solid var(--border); border-radius: 14px;
+  padding: 14px 16px; box-shadow: 0 2px 8px rgba(0,0,0,.06); transition: border-color .2s;
+}
+.search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(37,99,235,.1); }
+.search-row { display: flex; align-items: center; gap: 10px; }
+.search-icon { color: var(--text-muted); flex-shrink: 0; }
+.search-input {
+  flex: 1; min-width: 0; border: none; outline: none;
+  font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 500;
+  color: var(--text); background: transparent; letter-spacing: .02em;
+}
+.search-input::placeholder { color: var(--text-muted); font-weight: 400; }
+.search-clear {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+  padding: 4px 10px; font-size: 12px; color: var(--text-dim); cursor: pointer; display: none; flex-shrink: 0;
+}
+.search-clear:hover { background: var(--border); }
+.search-results { display: none; margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; }
+.search-results.visible { display: block; }
+.search-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+.search-meta strong { color: var(--accent); }
+.result-card {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 11px 13px; margin-bottom: 8px; flex-wrap: wrap;
+}
+.result-paper { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: var(--accent); min-width: 76px; padding-top: 2px; }
+.result-info { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.result-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 6px; padding: 3px 9px; font-size: 11px; color: var(--text-dim);
+}
+.search-not-found { text-align: center; padding: 20px; color: var(--text-muted); font-size: 13px; }
+
+/* Prog day switcher */
+.prog-switcher { display: flex; gap: 8px; margin: 16px 0 0; flex-wrap: wrap; }
+.prog-btn {
+  background: var(--white); border: 2px solid var(--border); border-radius: 10px;
+  padding: 9px 18px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600;
+  color: var(--text-dim); cursor: pointer; transition: all .2s;
+}
+.prog-btn:hover { border-color: var(--accent); color: var(--accent); }
+.prog-btn.active { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 4px 12px rgba(37,99,235,.25); }
+
+/* Program timeline */
+.timeline-wrap { margin: 20px 0 56px; }
+.prog-panel { display: none; }
+.prog-panel.active { display: block; }
+.timeline { position: relative; }
+.t-node { position: relative; margin-bottom: 20px; }
+.t-node:last-child { margin-bottom: 0; }
+.t-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.t-head {
+  display: flex; align-items: center; gap: 12px; padding: 14px 16px;
+  background: linear-gradient(90deg, #f8faff 0%, #ffffff 100%);
+  border-bottom: 1px solid var(--border); flex-wrap: wrap;
+}
+.t-session-tag {
+  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--white); background: var(--accent2);
+  border-radius: 6px; padding: 3px 10px; flex-shrink: 0;
+}
+.t-time { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--text); flex: 1; min-width: 120px; }
+.t-count { font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
+
+/* ── ROOM ROWS — mobile-first flex, not table ── */
+.room-list { width: 100%; }
+.room-row {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 10px 14px; border-top: 1px solid var(--border);
+  transition: background .15s;
+}
+.room-row:hover { background: #f8faff; }
+.room-row-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.room-name {
+  font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700;
+  color: var(--text-dim); flex-shrink: 0; min-width: 90px;
+}
+.topic-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 9px; border-radius: 7px; font-size: 11px; font-weight: 600;
+  border: 1px solid var(--tc-border); background: var(--tc-bg); color: var(--tc);
+  white-space: nowrap; flex-shrink: 0;
+}
+.chip-dot { width: 6px; height: 6px; border-radius: 2px; background: var(--tc); flex-shrink: 0; }
+.papers-wrap { display: flex; flex-wrap: wrap; gap: 5px; }
+.p-code {
+  background: #f0f4f9; border: 1px solid #dde3ee; border-radius: 5px;
+  padding: 3px 8px; font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; color: var(--text-dim); letter-spacing: .02em;
+  white-space: nowrap; flex-shrink: 0;
+}
+.p-code.highlight { background: #fef9c3; border-color: #f59e0b; color: #92400e; font-weight: 700; }
+
+footer {
+  text-align: center; padding: 20px 16px;
+  font-size: 12px; color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+/* ── RESPONSIVE ── */
+@media (min-width: 640px) {
+  .room-row { flex-direction: row; align-items: flex-start; }
+  .room-row-top { flex-direction: column; align-items: flex-start; gap: 4px; width: 170px; flex-shrink: 0; }
+  .papers-wrap { padding-top: 2px; flex: 1; }
+}
+@media (max-width: 400px) {
+  .nav-logo { display: none; }
+  .search-input { font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">iSTEM-Ed <span>2026</span></div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showPage('schedule', this)">Schedule</button>
+      <button class="nav-tab" onclick="showPage('program', this)">Presentation Program</button>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE: SCHEDULE -->
+<div class="page active" id="page-schedule">
+  <header>
+    <div class="eyebrow">11th International Conference on STEM Education</div>
+    <h1>Presenter <em>LookUp</em></h1>
+    <div class="header-pills">
+      <span class="pill">July 15–17, 2026</span>
+      <span class="pill">Empress Convention Center, Chiang Mai</span>
+    </div>
+  </header>
+  <div class="sched-wrap">
+    <div class="day-switcher">
+      <button class="day-btn active" onclick="switchSchedDay(0,this)">Wed · July 15</button>
+      <button class="day-btn" onclick="switchSchedDay(1,this)">Thu · July 16</button>
+      <button class="day-btn" onclick="switchSchedDay(2,this)">Fri · July 17</button>
+    </div>
+    <div id="sched-days"></div>
+  </div>
+</div>
+
+<!-- PAGE: PRESENTATION PROGRAM -->
+<div class="page" id="page-program">
+  <header>
+    <div class="eyebrow">11th International Conference on STEM Education</div>
+    <h1>Presenter <em>LookUp</em></h1>
+    <p class="header-sub">Paper Presentation Program — Parallel Sessions</p>
+    <div class="header-pills">
+      <span class="pill">July 16–17, 2026</span>
+      <span class="pill">Chiangmai Rooms &amp; Board Rooms</span>
+      <span class="pill">6 Sessions</span>
+    </div>
+  </header>
+  <div class="section-outer">
+    <div class="legend-section">
+      <div class="section-label">Topic Categories</div>
+      <div class="legend-grid" id="legend"></div>
+    </div>
+    <div class="search-section">
+      <div class="search-box">
+        <div class="search-row">
+          <svg class="search-icon" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.4-1.42 1.41-5.4-5.39A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+          <input class="search-input" id="searchInput" type="text" placeholder="ค้นหา Paper ID เช่น P07670 หรือ 670…" autocomplete="off" oninput="handleSearch(this.value)">
+          <button class="search-clear" id="clearBtn" onclick="clearSearch()">✕ ล้าง</button>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
+    <div class="prog-switcher">
+      <button class="prog-btn active" onclick="switchProgDay(0,this)">Thursday · July 16</button>
+      <button class="prog-btn" onclick="switchProgDay(1,this)">Friday · July 17</button>
+    </div>
+    <div class="timeline-wrap">
+      <div id="prog-days"></div>
+    </div>
+  </div>
+</div>
+
+<footer>iSTEM-Ed 2026 · International STEM Education Conference · Suan Sunandha Rajabhat University</footer>
+
+<script>
+function fmt(h) {
+  const hh = Math.floor(h), mm = Math.round((h-hh)*60);
+  return `${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`;
+}
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── SCHEDULE ── */
+const SCHED = [
+  { day:"Wednesday, July 15, 2026", items:[
+    { start:8,    end:16,   title:"Youth Innovation",  desc:"Pre-conference creative workshop for students.", venue:"Empress Convention Center 2nd Fl., Chiangmai 3-5", highlight:true },
+    { start:13,   end:17,   title:"Registration",      desc:"Conference check-in for all participants.", venue:"Empress Convention Center 2nd Fl.", highlight:true },
+    { start:15.5, end:17,   title:"Committee Meeting", desc:"Briefing for organizers and session chairs.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1, 2", highlight:true },
+    { start:18,   end:20,   title:"Welcome Dinner",    desc:"Lanna-inspired networking and cultural evening.", venue:"Empress Ground Fl., Chao Nang Coffee Shop", highlight:true },
+  ]},
+  { day:"Thursday, July 16, 2026", items:[
+    { start:8,     end:12,    title:"Registration",         desc:"Conference check-in for all participants.", venue:"Empress Convention Center 2nd Fl." },
+    { start:8,     end:9.75,  title:"Parallel Session I",   desc:"Paper presentations by conference authors.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1, 2 and Ground Fl. Board Room 2, 3, 4" },
+    { start:9.75,  end:10.05, title:"Coffee Break",         desc:"", venue:"Empress Convention Center 2nd Fl." },
+    { start:10.05, end:10.35, title:"Opening Ceremony",     desc:"Official launch of the conference.", venue:"Empress Convention Center 2nd Fl., Chiangmai 3-5", highlight:true },
+    { start:10.35, end:11.35, title:"Keynote Speakers",     desc:"Insights from leading experts on STEM education.", venue:"Empress Convention Center 2nd Fl., Chiangmai 3-5", highlight:true },
+    { start:11.35, end:13,    title:"Lunch",                desc:"", venue:"Empress Convention Center Ground Fl., Lobby" },
+    { start:13,    end:14.75, title:"Parallel Session II",  desc:"Paper presentations by conference authors.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1-5" },
+    { start:14.75, end:15.05, title:"Coffee Break",         desc:"", venue:"Empress Convention Center 2nd Fl." },
+    { start:15.05, end:17.5,  title:"Parallel Session III", desc:"Paper presentations by conference authors.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1-5" },
+    { start:18,    end:22,    title:"Banquet & Awarding",   desc:"Gala dinner honoring excellence in STEM education.", venue:"Empress, Imperial Ballroom", highlight:true },
+  ]},
+  { day:"Friday, July 17, 2026", items:[
+    { start:8.2,  end:10,  title:"Parallel Session IV",       desc:"Paper presentations by conference authors.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1-5" },
+    { start:10,   end:10.2, title:"Coffee Break",             desc:"", venue:"Empress Convention Center 2nd Fl." },
+    { start:10.2, end:12,  title:"Parallel Session V",        desc:"Paper presentations by conference authors.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1-5" },
+    { start:12,   end:13,  title:"Lunch",                     desc:"", venue:"Empress Convention Center Ground Fl., Lobby" },
+    { start:13,   end:15,  title:"Session Presentations VI",  desc:"Paper presentations by conference authors.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1-5" },
+  ]},
+];
+
+const schedDaysEl = document.getElementById('sched-days');
+SCHED.forEach((day, di) => {
+  let html = `<div class="day-panel${di===0?' active':''}" id="sched-day-${di}"><div class="sched-timeline">`;
+  day.items.forEach(item => {
+    const hl = item.highlight ? ' highlight' : '';
+    const t  = item.end ? `${fmt(item.start)} – ${fmt(item.end)}` : fmt(item.start);
+    html += `<div class="sched-item${hl}">
+      <div class="sched-card">
+        <div class="sched-time-row">
+          <span class="sched-time">${t}</span>
+          <span class="sched-highlight-star">⭐</span>
+        </div>
+        <div class="sched-title">${item.title}</div>
+        ${item.desc ? `<div class="sched-desc">${item.desc}</div>` : ''}
+        ${item.venue ? `<div class="sched-venue"><svg width="11" height="11" fill="currentColor" stroke="none" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>${item.venue}</div>` : ''}
+      </div></div>`;
+  });
+  html += `</div></div>`;
+  schedDaysEl.innerHTML += html;
+});
+function switchSchedDay(idx, btn) {
+  document.querySelectorAll('#sched-days .day-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.day-switcher .day-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sched-day-'+idx).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── PRESENTATION PROGRAM ── */
+const TOPICS = {
+  1:{ color:"var(--t1)", bg:"var(--t1-bg)", border:"var(--t1-border)", short:"Technology-Enhanced STEM", full:"Technology-Enhanced STEM Teaching and Learning" },
+  2:{ color:"var(--t2)", bg:"var(--t2-bg)", border:"var(--t2-border)", short:"Pedagogical Models",       full:"Pedagogical Models and Applications of STEM Education" },
+  3:{ color:"var(--t3)", bg:"var(--t3-bg)", border:"var(--t3-border)", short:"Skills & Re-Skills",       full:"Skills and Re-Skills Development for STEM Literacy" },
+  4:{ color:"var(--t4)", bg:"var(--t4-bg)", border:"var(--t4-border)", short:"Curriculum Studies",       full:"Curriculum Studies and Development" },
+  5:{ color:"var(--t5)", bg:"var(--t5-bg)", border:"var(--t5-border)", short:"Research & Modern Tech",   full:"Research & Development of Modern Technology for Learning Community Based on STEM Education" },
+  6:{ color:"var(--t6)", bg:"var(--t6-bg)", border:"var(--t6-border)", short:"Others",                   full:"Others Related Topics" },
+};
+const PROG_DATA = [
+  { day:"Thursday, July 16, 2026", sessions:[
+    { id:"I",   time:"08:00 – 09:45", rooms:[
+      { room:"Chiangmai 1",  t:1, papers:["P07670","P07671","P07709","P07651","P07736","P07652"] },
+      { room:"Chiangmai 2",  t:2, papers:["P07632","P07649","P07653","P07660","P07667","P07685"] },
+      { room:"Board Room 2", t:3, papers:["P07687","P07689","P07754","P07811","P07615","P07673"] },
+      { room:"Board Room 3", t:4, papers:["P07659","P07691","P07631","P07672","P07698","P07711"] },
+      { room:"Board Room 4", t:5, papers:["P07658","P07712","P07744","P07745","P07749","P07752"] },
+    ]},
+    { id:"II",  time:"13:00 – 14:45", rooms:[
+      { room:"Chiangmai 1", t:1, papers:["P07700","P07703","P07696","P07704","P07777","P07793"] },
+      { room:"Chiangmai 2", t:2, papers:["P07688","P07694","P07699","P07706","P07707","P07713"] },
+      { room:"Chiangmai 3", t:3, papers:["P07678","P07702","P07733","P07665","P07726","P07730"] },
+      { room:"Chiangmai 4", t:4, papers:["P07753","P07760","P07855","P07705","P07828","P07844"] },
+      { room:"Chiangmai 5", t:6, papers:["P07616","P07617","P07619","P07620","P07624","P07625"] },
+    ]},
+    { id:"III", time:"15:05 – 17:30", rooms:[
+      { room:"Chiangmai 1", t:1, papers:["P07663","P07719","P07720","P07761","P07768","P07806","P07677","P07725"] },
+      { room:"Chiangmai 2", t:1, papers:["P07764","P07783","P07790","P07808","P07656","P07766","P07650","P07661"] },
+      { room:"Chiangmai 3", t:2, papers:["P07741","P07758","P07763","P07772","P07779","P07789","P07792","P07815"] },
+      { room:"Chiangmai 4", t:2, papers:["P07817","P07829","P07842","P07845","P07701","P07816","P07664","P07751"] },
+      { room:"Chiangmai 5", t:5, papers:["P07757","P07759","P07769","P07771","P07798","P07799","P07802"] },
+    ]},
+  ]},
+  { day:"Friday, July 17, 2026", sessions:[
+    { id:"IV", time:"08:20 – 10:00", rooms:[
+      { room:"Chiangmai 1", t:1, papers:["P07674","P07675","P07765","P07666","P07697"] },
+      { room:"Chiangmai 2", t:2, papers:["P07695","P07717","P07739","P07748","P07812"] },
+      { room:"Chiangmai 3", t:4, papers:["P07676","P07770","P07735","P07773"] },
+      { room:"Chiangmai 4", t:6, papers:["P07626","P07627","P07636","P07637","P07638"] },
+      { room:"Chiangmai 5", t:6, papers:["P07640","P07642","P07643","P07647","P07686"] },
+    ]},
+    { id:"V",  time:"10:20 – 12:00", rooms:[
+      { room:"Chiangmai 1", t:1, papers:["P07724","P07747","P07775","P07795","P07824"] },
+      { room:"Chiangmai 2", t:2, papers:["P07668","P07669","P07718","P07801","P07850"] },
+      { room:"Chiangmai 3", t:3, papers:["P07635","P07714","P07784","P07727","P07782"] },
+      { room:"Chiangmai 4", t:5, papers:["P07813","P07814","P07835"] },
+      { room:"Chiangmai 5", t:6, papers:["P07731","P07742","P07774","P07776","P07794"] },
+    ]},
+    { id:"VI", time:"13:00 – 15:00", rooms:[
+      { room:"Chiangmai 1", t:1, papers:["P07840","P07841","P07662","P07821","P07827"] },
+      { room:"Chiangmai 2", t:2, papers:["P07722","P07803"] },
+      { room:"Chiangmai 3", t:3, papers:["P07809","P07834"] },
+      { room:"Chiangmai 4", t:6, papers:["P07805","P07807","P07846"] },
+    ]},
+  ]},
+];
+
+/* legend */
+const legendEl = document.getElementById('legend');
+Object.entries(TOPICS).forEach(([num, t]) => {
+  legendEl.innerHTML += `<div class="legend-card">
+    <div class="legend-swatch" style="--tc:${t.color}"></div>
+    <div class="legend-num" style="color:${t.color}">${num}</div>
+    <div class="legend-label">${t.full}</div>
+  </div>`;
+});
+
+/* program */
+const progDaysEl = document.getElementById('prog-days');
+PROG_DATA.forEach((day, di) => {
+  let html = `<div class="prog-panel${di===0?' active':''}" id="prog-day-${di}"><div class="timeline">`;
+  day.sessions.forEach(sess => {
+    const total = sess.rooms.reduce((s,r) => s + r.papers.length, 0);
+    html += `<div class="t-node"><div class="t-card">
+      <div class="t-head">
+        <span class="t-session-tag">Session ${sess.id}</span>
+        <span class="t-time">${sess.time}</span>
+        <span class="t-count">${sess.rooms.length} rooms · ${total} papers</span>
+      </div>
+      <div class="room-list">`;
+    sess.rooms.forEach(r => {
+      const t = TOPICS[r.t];
+      html += `<div class="room-row">
+        <div class="room-row-top">
+          <div class="room-name">${r.room}</div>
+          <div class="topic-chip" style="--tc:${t.color};--tc-bg:${t.bg};--tc-border:${t.border}">
+            <div class="chip-dot"></div>${t.short}
+          </div>
+        </div>
+        <div class="papers-wrap">${r.papers.map(p => `<span class="p-code">${p}</span>`).join('')}</div>
+      </div>`;
+    });
+    html += `</div></div></div>`;
+  });
+  html += `</div></div>`;
+  progDaysEl.innerHTML += html;
+});
+
+function switchProgDay(idx, btn) {
+  document.querySelectorAll('#prog-days .prog-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.prog-switcher .prog-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('prog-day-'+idx).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── SEARCH ── */
+function handleSearch(raw) {
+  const q = raw.trim().toUpperCase();
+  const clearBtn = document.getElementById('clearBtn');
+  const resultsEl = document.getElementById('searchResults');
+  document.querySelectorAll('.p-code.highlight').forEach(el => el.classList.remove('highlight'));
+  if (!q) {
+    clearBtn.style.display = 'none';
+    resultsEl.classList.remove('visible');
+    resultsEl.innerHTML = '';
+    return;
+  }
+  clearBtn.style.display = '';
+  const matches = [];
+  PROG_DATA.forEach(day => {
+    day.sessions.forEach(sess => {
+      sess.rooms.forEach(room => {
+        room.papers.forEach(pid => {
+          if (pid.toUpperCase().includes(q))
+            matches.push({ pid, day: day.day, session: sess.id, time: sess.time, room: room.room, topic: TOPICS[room.t] });
+        });
+      });
+    });
+  });
+  resultsEl.classList.add('visible');
+  if (matches.length === 0) {
+    resultsEl.innerHTML = `<div class="search-not-found">ไม่พบ Paper ID ที่ตรงกับ "<strong>${q}</strong>"</div>`;
+    return;
+  }
+  let html = `<div class="search-meta">พบ <strong>${matches.length}</strong> รายการ</div>`;
+  matches.forEach(m => {
+    html += `<div class="result-card">
+      <div class="result-paper">${m.pid}</div>
+      <div class="result-info">
+        <span class="result-badge">📅 ${m.day}</span>
+        <span class="result-badge">🕐 Session ${m.session} · ${m.time}</span>
+        <span class="result-badge">🚪 ${m.room}</span>
+        <span class="result-badge" style="color:${m.topic.color};border-color:${m.topic.border};background:${m.topic.bg}">${m.topic.short}</span>
+      </div>
+    </div>`;
+  });
+  resultsEl.innerHTML = html;
+  setTimeout(() => {
+    document.querySelectorAll('.p-code').forEach(el => {
+      if (el.textContent.trim().toUpperCase().includes(q)) el.classList.add('highlight');
+    });
+  }, 50);
+}
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  handleSearch('');
+  document.getElementById('searchInput').focus();
+}
+</script>
+</body>
+</html>
