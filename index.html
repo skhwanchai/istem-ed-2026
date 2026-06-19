@@ -6,334 +6,321 @@
 <title>iSTEM-Ed 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f0f4f9;
-  --white: #ffffff;
-  --border: #dde3ee;
-  --text: #1a2033;
-  --text-dim: #5a6480;
-  --text-muted: #9aa3b8;
-  --accent: #2563eb;
-  --accent2: #be185d;
-  --accent2-bg: #fdf2f8;
-  --accent2-border: #fbcfe8;
-  --t1: #2563eb; --t1-bg: #eff6ff; --t1-border: #bfdbfe;
-  --t2: #0d9488; --t2-bg: #f0fdfa; --t2-border: #99f6e4;
-  --t3: #d97706; --t3-bg: #fffbeb; --t3-border: #fde68a;
-  --t4: #7c3aed; --t4-bg: #f5f3ff; --t4-border: #ddd6fe;
-  --t5: #ea580c; --t5-bg: #fff7ed; --t5-border: #fed7aa;
-  --t6: #db2777; --t6-bg: #fdf2f8; --t6-border: #fbcfe8;
+  --primary: #0066cc;
+  --primary-focus: #0071e3;
+  --primary-on-dark: #2997ff;
+  --ink: #1d1d1f;
+  --ink-80: #333333;
+  --ink-48: #7a7a7a;
+  --canvas: #ffffff;
+  --parchment: #f5f5f7;
+  --pearl: #fafafc;
+  --tile-dark: #272729;
+  --tile-dark-2: #2a2a2c;
+  --hairline: #e0e0e0;
+  --divider-soft: #f0f0f0;
+  --on-dark: #ffffff;
+  --body-muted: #cccccc;
+  /* topic accents — kept subtle, Apple-flat */
+  --t1: #0066cc; --t1-bg: #f0f6ff;
+  --t2: #0d8a7e; --t2-bg: #eefaf8;
+  --t3: #b25e00; --t3-bg: #fff6ec;
+  --t4: #6b4bd6; --t4-bg: #f4f1fe;
+  --t5: #c2410c; --t5-bg: #fff3ed;
+  --t6: #b3105f; --t6-bg: #fdf0f6;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; }
-
-/* ── NAV ── */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(255,255,255,.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+body {
+  background: var(--canvas); color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-feature-settings: "ss03";
+  font-size: 17px; line-height: 1.47; letter-spacing: -0.374px;
+  -webkit-font-smoothing: antialiased;
 }
-.nav-inner {
-  max-width: 1080px; margin: 0 auto; padding: 0 16px;
+
+/* ── GLOBAL NAV (true black, thin) ── */
+.global-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #000; color: var(--on-dark);
+}
+.gn-inner {
+  max-width: 1440px; margin: 0 auto; padding: 0 22px; height: 48px;
   display: flex; align-items: center; gap: 0;
 }
-.nav-logo {
-  font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700;
-  color: var(--text); letter-spacing: -.02em;
-  padding: 14px 0; flex-shrink: 0;
+.gn-logo {
+  font-size: 15px; font-weight: 600; letter-spacing: -0.2px;
+  color: var(--on-dark); flex-shrink: 0;
 }
-.nav-logo span { color: var(--accent2); }
-.nav-tabs { display: flex; gap: 4px; margin-left: auto; }
-.nav-tab {
-  font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600;
-  color: var(--text-dim); padding: 10px 14px; border-radius: 8px;
-  cursor: pointer; border: none; background: transparent; transition: all .18s; white-space: nowrap;
+.gn-logo span { color: var(--primary-on-dark); }
+.gn-tabs { display: flex; gap: 4px; margin-left: auto; }
+.gn-tab {
+  font-size: 12px; font-weight: 400; letter-spacing: -0.12px;
+  color: #d2d2d7; padding: 7px 13px; border-radius: 9999px;
+  cursor: pointer; border: none; background: transparent;
+  transition: color .2s, background .2s; white-space: nowrap;
 }
-.nav-tab:hover { background: var(--accent2-bg); color: var(--accent2); }
-.nav-tab.active, .nav-tab.active:hover { background: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(37,99,235,.25); }
-.nav-tab.active { background: var(--accent2); color: #fff; box-shadow: 0 2px 8px rgba(190,24,93,.3); }
-.nav-tab.active:hover { background: var(--accent2); color: #fff; }
+.gn-tab:hover { color: #fff; }
+.gn-tab.active { background: var(--primary); color: #fff; }
+.gn-tab.active:hover { background: var(--primary); }
 
 /* ── PAGES ── */
 .page { display: none; }
 .page.active { display: block; }
 
-/* ── HEADER ── */
-header {
-  background: linear-gradient(160deg, #1e3a8a 0%, #1d4ed8 38%, #0891b2 72%, #be185d 100%);
-  padding: 48px 24px 38px; text-align: center; color: white;
-  position: relative; overflow: hidden;
+/* ── HERO TILE ── */
+.hero {
+  background: var(--parchment); text-align: center;
+  padding: 80px 22px 72px;
 }
-header::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 28px;
-  background: var(--bg); clip-path: ellipse(55% 100% at 50% 100%);
+.hero .eyebrow {
+  font-size: 14px; font-weight: 400; letter-spacing: -0.224px;
+  color: var(--ink-48); margin-bottom: 14px;
 }
-.eyebrow {
-  font-family: 'Space Grotesk', sans-serif; font-size: 10px;
-  letter-spacing: .2em; text-transform: uppercase; opacity: .75; margin-bottom: 10px;
+.hero h1 {
+  font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.5px;
+  color: var(--ink);
 }
-header h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(26px, 6vw, 52px); font-weight: 700;
-  letter-spacing: -.03em; line-height: 1;
+.hero h1 em { font-style: normal; color: var(--primary); }
+.hero .lead {
+  font-size: 24px; font-weight: 300; line-height: 1.4; letter-spacing: 0;
+  color: var(--ink-80); margin-top: 12px;
 }
-header h1 em { font-style: normal; opacity: .65; }
-.header-sub { margin-top: 8px; font-size: 14px; opacity: .8; }
-.header-pills { margin-top: 16px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-.pill {
-  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
-  border-radius: 100px; padding: 4px 12px; font-size: 11px; backdrop-filter: blur(4px);
+.hero-meta {
+  margin-top: 26px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+}
+.meta-chip {
+  background: var(--canvas); border: 1px solid var(--hairline);
+  border-radius: 9999px; padding: 9px 18px;
+  font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80);
 }
 
-/* ── SCHEDULE PAGE ── */
-.sched-wrap { max-width: 860px; margin: 32px auto 56px; padding: 0 16px; }
-.day-switcher { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: nowrap; }
+/* ── CONTENT CONTAINER ── */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
+
+/* ── SCHEDULE ── */
+.sched-section { padding: 64px 0 96px; }
+.day-switcher { display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: nowrap; }
 .day-btn {
   flex: 1; min-width: 0; text-align: center;
-  background: var(--white); border: 2px solid var(--border); border-radius: 10px;
-  padding: 9px 10px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600;
-  color: var(--text-dim); cursor: pointer; transition: all .2s; white-space: nowrap;
+  background: var(--canvas); border: 1px solid var(--hairline); border-radius: 9999px;
+  padding: 11px 14px; font-size: 14px; font-weight: 400; letter-spacing: -0.224px;
+  color: var(--ink-80); cursor: pointer; transition: all .2s; white-space: nowrap;
 }
-.day-btn:hover { border-color: var(--accent); color: var(--accent); }
-.day-btn.active { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 4px 12px rgba(37,99,235,.25); }
+.day-btn:hover { border-color: var(--primary); color: var(--primary); }
+.day-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.day-btn:active { transform: scale(0.95); }
 .day-panel { display: none; }
 .day-panel.active { display: block; }
-.sched-timeline { position: relative; }
-.sched-item { margin-bottom: 16px; }
-.sched-item:last-child { margin-bottom: 0; }
-.sched-card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 14px; padding: 13px 16px;
-  box-shadow: 0 1px 4px rgba(0,0,0,.05); transition: box-shadow .2s;
-}
-.sched-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,.09); }
-.sched-item.highlight .sched-card {
-  border-color: #bfdbfe;
-  background: linear-gradient(135deg, #f8fbff 0%, #ffffff 100%);
-  box-shadow: 0 2px 10px rgba(37,99,235,.1);
-}
-.sched-time-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+
+.sched-item { padding: 32px 0; border-top: 1px solid var(--divider-soft); display: flex; gap: 28px; align-items: baseline; }
+.sched-item:first-child { border-top: none; }
 .sched-time {
-  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600;
-  color: var(--accent2); background: var(--accent2-bg); border: 1px solid var(--accent2-border);
-  border-radius: 5px; padding: 2px 8px; flex-shrink: 0;
+  font-size: 17px; font-weight: 600; letter-spacing: -0.374px; color: var(--primary);
+  flex-shrink: 0; width: 140px;
 }
-.sched-highlight-star { font-size: 12px; display: none; }
-.sched-item.highlight .sched-highlight-star { display: inline; }
-.sched-title { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.3; }
-.sched-item.highlight .sched-title { color: var(--accent); }
-.sched-desc { font-size: 12px; color: var(--text-dim); margin-top: 3px; }
+.sched-body { flex: 1; min-width: 0; }
+.sched-title { font-size: 28px; font-weight: 600; line-height: 1.1; letter-spacing: -0.4px; color: var(--ink); }
+.sched-item.highlight .sched-title { color: var(--primary); }
+.sched-desc { font-size: 17px; font-weight: 400; color: var(--ink-80); margin-top: 6px; }
 .sched-venue {
-  display: inline-flex; align-items: center; gap: 5px; margin-top: 7px;
-  font-size: 11px; color: var(--text-muted); background: var(--bg);
-  border: 1px solid var(--border); border-radius: 5px; padding: 2px 8px;
+  margin-top: 12px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-48);
+  display: inline-flex; align-items: center; gap: 7px;
 }
+.sched-venue svg { color: var(--primary); flex-shrink: 0; }
 
-/* ── PRESENTATION PROGRAM PAGE ── */
-.section-outer { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
-
-/* Legend */
-.legend-section { margin: 28px 0 0; }
+/* ── PRESENTATION PROGRAM ── */
+.prog-intro { padding: 56px 0 0; }
 .section-label {
-  font-family: 'Space Grotesk', sans-serif; font-size: 10px; font-weight: 600;
-  letter-spacing: .18em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;
+  font-size: 12px; font-weight: 600; letter-spacing: -0.12px; text-transform: uppercase;
+  color: var(--ink-48); margin-bottom: 16px;
 }
-.legend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
-.legend-card {
-  background: var(--white); border: 1px solid var(--border); border-radius: 10px;
-  padding: 9px 12px; display: flex; align-items: flex-start; gap: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.04);
-}
-.legend-swatch { width: 4px; border-radius: 4px; align-self: stretch; background: var(--tc); flex-shrink: 0; }
-.legend-num { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12px; color: var(--tc); flex-shrink: 0; margin-top: 1px; }
-.legend-label { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+.legend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--divider-soft); border: 1px solid var(--divider-soft); border-radius: 18px; overflow: hidden; }
+.legend-card { background: var(--canvas); padding: 16px 18px; display: flex; align-items: flex-start; gap: 12px; }
+.legend-num { font-weight: 600; font-size: 17px; color: var(--tc); flex-shrink: 0; }
+.legend-label { font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80); line-height: 1.43; }
 
 /* Search */
-.search-section { margin: 16px 0 0; }
+.search-section { padding: 36px 0 0; }
 .search-box {
-  background: var(--white); border: 2px solid var(--border); border-radius: 14px;
-  padding: 14px 16px; box-shadow: 0 2px 8px rgba(0,0,0,.06); transition: border-color .2s;
+  background: var(--canvas); border: 1px solid var(--hairline); border-radius: 18px;
+  padding: 20px 22px; transition: border-color .2s, box-shadow .2s;
 }
-.search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(37,99,235,.1); }
-.search-row { display: flex; align-items: center; gap: 10px; }
-.search-icon { color: var(--text-muted); flex-shrink: 0; }
+.search-box:focus-within { border-color: var(--primary-focus); box-shadow: 0 0 0 4px rgba(0,113,227,.12); }
+.search-row { display: flex; align-items: center; gap: 12px; }
+.search-icon { color: var(--ink-48); flex-shrink: 0; }
 .search-input {
   flex: 1; min-width: 0; border: none; outline: none;
-  font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 500;
-  color: var(--text); background: transparent; letter-spacing: .02em;
+  font-family: inherit; font-size: 17px; font-weight: 400; letter-spacing: -0.374px;
+  color: var(--ink); background: transparent;
 }
-.search-input::placeholder { color: var(--text-muted); font-weight: 400; }
+.search-input::placeholder { color: var(--ink-48); }
 .search-clear {
-  background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
-  padding: 4px 10px; font-size: 12px; color: var(--text-dim); cursor: pointer; display: none; flex-shrink: 0;
+  background: var(--parchment); border: none; border-radius: 9999px;
+  padding: 7px 14px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80);
+  cursor: pointer; display: none; flex-shrink: 0;
 }
-.search-clear:hover { background: var(--border); }
-.search-results { display: none; margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; }
+.search-clear:active { transform: scale(0.95); }
+.search-results { display: none; margin-top: 20px; border-top: 1px solid var(--divider-soft); padding-top: 20px; }
 .search-results.visible { display: block; }
-.search-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
-.search-meta strong { color: var(--accent); }
+.search-meta { font-size: 14px; letter-spacing: -0.224px; color: var(--ink-48); margin-bottom: 16px; }
+.search-meta strong { color: var(--primary); font-weight: 600; }
 .result-card {
-  display: flex; align-items: flex-start; gap: 10px;
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 10px; padding: 11px 13px; margin-bottom: 8px; flex-wrap: wrap;
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 16px 0; border-top: 1px solid var(--divider-soft); flex-wrap: wrap;
 }
-.result-paper { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: var(--accent); min-width: 76px; padding-top: 2px; }
-.result-info { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.result-card:first-of-type { border-top: none; }
+.result-paper { font-weight: 600; font-size: 17px; color: var(--primary); min-width: 80px; letter-spacing: -0.374px; }
+.result-info { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .result-badge {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 6px; padding: 3px 9px; font-size: 11px; color: var(--text-dim);
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80);
 }
 .result-badge svg { flex-shrink: 0; }
-.search-not-found { text-align: center; padding: 20px; color: var(--text-muted); font-size: 13px; }
-
-/* Prog day switcher */
-.prog-switcher { display: flex; gap: 8px; margin: 16px 0 0; flex-wrap: wrap; }
-.prog-btn {
-  background: var(--white); border: 2px solid var(--border); border-radius: 10px;
-  padding: 9px 18px; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600;
-  color: var(--text-dim); cursor: pointer; transition: all .2s;
+.result-topic {
+  display: inline-flex; align-items: center;
+  border-radius: 9999px; padding: 5px 14px; font-size: 14px; font-weight: 400; letter-spacing: -0.224px;
+  color: var(--tc); background: var(--tc-bg);
 }
-.prog-btn:hover { border-color: var(--accent); color: var(--accent); }
-.prog-btn.active { background: var(--accent); border-color: var(--accent); color: white; box-shadow: 0 4px 12px rgba(37,99,235,.25); }
+.search-not-found { text-align: center; padding: 28px; color: var(--ink-48); font-size: 17px; }
 
-/* Program timeline */
-.timeline-wrap { margin: 20px 0 56px; }
+/* Program switcher */
+.prog-switcher { display: flex; gap: 8px; margin: 36px 0 0; flex-wrap: nowrap; }
+.prog-btn {
+  flex: 1; min-width: 0; text-align: center;
+  background: var(--canvas); border: 1px solid var(--hairline); border-radius: 9999px;
+  padding: 11px 14px; font-size: 14px; font-weight: 400; letter-spacing: -0.224px;
+  color: var(--ink-80); cursor: pointer; transition: all .2s; white-space: nowrap;
+}
+.prog-btn:hover { border-color: var(--primary); color: var(--primary); }
+.prog-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.prog-btn:active { transform: scale(0.95); }
+
+.timeline-wrap { padding: 36px 0 96px; }
 .prog-panel { display: none; }
 .prog-panel.active { display: block; }
-.timeline { position: relative; }
-.t-node { position: relative; margin-bottom: 20px; }
+.t-node { margin-bottom: 56px; }
 .t-node:last-child { margin-bottom: 0; }
-.t-card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+.t-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+.t-session {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+  color: #fff; background: var(--primary); border-radius: 9999px; padding: 5px 14px; flex-shrink: 0;
 }
-.t-head {
-  display: flex; align-items: center; gap: 12px; padding: 14px 16px;
-  background: linear-gradient(90deg, #f8faff 0%, #ffffff 100%);
-  border-bottom: 1px solid var(--border); flex-wrap: wrap;
-}
-.t-session-tag {
-  font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--white); background: var(--accent2);
-  border-radius: 6px; padding: 3px 10px; flex-shrink: 0;
-}
-.t-time { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--text); flex: 1; min-width: 120px; }
-.t-count { font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
-
-/* ── ROOM ROWS — mobile-first flex, not table ── */
-.room-list { width: 100%; }
-.room-row {
-  display: flex; flex-direction: column; gap: 6px;
-  padding: 10px 14px; border-top: 1px solid var(--border);
-  transition: background .15s;
-}
-.room-row:hover { background: #f8faff; }
-.room-row-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.t-time { font-size: 28px; font-weight: 600; letter-spacing: -0.4px; color: var(--ink); }
+.t-count { font-size: 14px; letter-spacing: -0.224px; color: var(--ink-48); margin-left: auto; }
+.room-grid { border: 1px solid var(--hairline); border-radius: 18px; overflow: hidden; }
+.room-row { display: flex; flex-direction: column; gap: 12px; padding: 20px 22px; border-top: 1px solid var(--divider-soft); }
+.room-row:first-child { border-top: none; }
+.room-row-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .room-name {
-  font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700;
-  color: var(--text-dim); flex-shrink: 0; min-width: 90px;
+  font-size: 17px; font-weight: 600; letter-spacing: -0.374px; color: var(--ink);
+  display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; min-width: 150px;
 }
+.room-name svg { color: var(--primary); flex-shrink: 0; }
 .topic-chip {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 3px 9px; border-radius: 7px; font-size: 11px; font-weight: 600;
-  border: 1px solid var(--tc-border); background: var(--tc-bg); color: var(--tc);
-  white-space: nowrap; flex-shrink: 0;
+  display: inline-flex; align-items: center; border-radius: 9999px;
+  padding: 4px 13px; font-size: 14px; letter-spacing: -0.224px;
+  color: var(--tc); background: var(--tc-bg); white-space: nowrap;
 }
-.chip-dot { width: 6px; height: 6px; border-radius: 2px; background: var(--tc); flex-shrink: 0; }
-.papers-wrap { display: flex; flex-wrap: wrap; gap: 5px; }
+.papers-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
 .p-code {
-  background: #f0f4f9; border: 1px solid #dde3ee; border-radius: 5px;
-  padding: 3px 8px; font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px; color: var(--text-dim); letter-spacing: .02em;
-  white-space: nowrap; flex-shrink: 0;
+  background: var(--parchment); border-radius: 9999px;
+  padding: 5px 13px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80);
+  white-space: nowrap;
 }
-.p-code.highlight { background: #fef9c3; border-color: #f59e0b; color: #92400e; font-weight: 700; }
+.p-code.highlight { background: var(--primary); color: #fff; font-weight: 500; }
 
+/* ── FOOTER ── */
 footer {
-  text-align: center; padding: 20px 16px;
-  font-size: 12px; color: var(--text-muted);
-  border-top: 1px solid var(--border);
+  background: var(--parchment); padding: 48px 22px;
+  text-align: center; font-size: 12px; letter-spacing: -0.12px; color: var(--ink-48);
 }
 
 /* ── RESPONSIVE ── */
-@media (min-width: 640px) {
-  .room-row { flex-direction: row; align-items: flex-start; }
-  .room-row-top { flex-direction: column; align-items: flex-start; gap: 4px; width: 170px; flex-shrink: 0; }
-  .papers-wrap { padding-top: 2px; flex: 1; }
+@media (max-width: 833px) {
+  .hero h1 { font-size: 40px; }
+  .hero .lead { font-size: 21px; }
+  .sched-item { flex-direction: column; gap: 8px; padding: 24px 0; }
+  .sched-time { width: auto; }
+  .sched-title { font-size: 24px; }
+  .t-time { font-size: 24px; }
+}
+@media (max-width: 640px) {
+  .hero { padding: 56px 18px 48px; }
+  .hero h1 { font-size: 34px; }
+  .gn-inner { padding: 0 16px; }
+  .container { padding: 0 18px; }
 }
 @media (max-width: 480px) {
-  .day-btn { font-size: 11px; padding: 8px 4px; }
-  .nav-inner { padding: 0 12px; }
-  .nav-logo { font-size: 13px; }
-  .nav-tab { font-size: 11px; padding: 9px 10px; }
-}
-@media (max-width: 400px) {
-  .search-input { font-size: 13px; }
+  .hero h1 { font-size: 28px; }
+  .gn-logo { font-size: 13px; }
+  .gn-tab { font-size: 11px; padding: 7px 10px; }
+  .day-btn, .prog-btn { font-size: 12px; padding: 10px 6px; }
+  .room-name { min-width: 0; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <div class="nav-logo">iSTEM-Ed <span>2026</span></div>
-    <div class="nav-tabs">
-      <button class="nav-tab active" onclick="showPage('schedule', this)">Schedule</button>
-      <button class="nav-tab" onclick="showPage('program', this)">Presentation Program</button>
+<!-- GLOBAL NAV -->
+<nav class="global-nav">
+  <div class="gn-inner">
+    <div class="gn-logo">iSTEM-Ed <span>2026</span></div>
+    <div class="gn-tabs">
+      <button class="gn-tab active" onclick="showPage('schedule', this)">Schedule</button>
+      <button class="gn-tab" onclick="showPage('program', this)">Presentation Program</button>
     </div>
   </div>
 </nav>
 
 <!-- PAGE: SCHEDULE -->
 <div class="page active" id="page-schedule">
-  <header>
+  <div class="hero">
     <div class="eyebrow">11th International Conference on STEM Education</div>
     <h1>Presenter <em>LookUp</em></h1>
-    <div class="header-pills">
-      <span class="pill">July 15–17, 2026</span>
-      <span class="pill">Empress Convention Center, Chiang Mai</span>
+    <p class="lead">July 15–17, 2026 · Chiang Mai</p>
+    <div class="hero-meta">
+      <span class="meta-chip">July 15–17, 2026</span>
+      <span class="meta-chip">Empress Convention Center, Chiang Mai</span>
     </div>
-  </header>
-  <div class="sched-wrap">
-    <div class="day-switcher">
-      <button class="day-btn active" onclick="switchSchedDay(0,this)">Wed · July 15</button>
-      <button class="day-btn" onclick="switchSchedDay(1,this)">Thu · July 16</button>
-      <button class="day-btn" onclick="switchSchedDay(2,this)">Fri · July 17</button>
+  </div>
+  <div class="container">
+    <div class="sched-section">
+      <div class="day-switcher">
+        <button class="day-btn active" onclick="switchSchedDay(0,this)">Wed · July 15</button>
+        <button class="day-btn" onclick="switchSchedDay(1,this)">Thu · July 16</button>
+        <button class="day-btn" onclick="switchSchedDay(2,this)">Fri · July 17</button>
+      </div>
+      <div id="sched-days"></div>
     </div>
-    <div id="sched-days"></div>
   </div>
 </div>
 
 <!-- PAGE: PRESENTATION PROGRAM -->
 <div class="page" id="page-program">
-  <header>
+  <div class="hero">
     <div class="eyebrow">11th International Conference on STEM Education</div>
     <h1>Presenter <em>LookUp</em></h1>
-    <p class="header-sub">Paper Presentation Program — Parallel Sessions</p>
-    <div class="header-pills">
-      <span class="pill">July 16–17, 2026</span>
-      <span class="pill">Chiangmai Rooms &amp; Board Rooms</span>
-      <span class="pill">6 Sessions</span>
+    <p class="lead">Paper Presentation Program</p>
+    <div class="hero-meta">
+      <span class="meta-chip">July 16–17, 2026</span>
+      <span class="meta-chip">Chiangmai Rooms &amp; Board Rooms</span>
+      <span class="meta-chip">6 Sessions</span>
     </div>
-  </header>
-  <div class="section-outer">
-    <div class="legend-section">
+  </div>
+  <div class="container">
+    <div class="prog-intro">
       <div class="section-label">Topic Categories</div>
       <div class="legend-grid" id="legend"></div>
     </div>
     <div class="search-section">
       <div class="search-box">
         <div class="search-row">
-          <svg class="search-icon" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.4-1.42 1.41-5.4-5.39A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.4-1.42 1.41-5.4-5.39A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
           <input class="search-input" id="searchInput" type="text" placeholder="ค้นหา Paper ID เช่น P07670 หรือ 670…" autocomplete="off" oninput="handleSearch(this.value)">
-          <button class="search-clear" id="clearBtn" onclick="clearSearch()">✕ ล้าง</button>
+          <button class="search-clear" id="clearBtn" onclick="clearSearch()">ล้าง</button>
         </div>
         <div class="search-results" id="searchResults"></div>
       </div>
@@ -357,10 +344,13 @@ function fmt(h) {
 }
 function showPage(id, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.gn-tab').forEach(b => b.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   btn.classList.add('active');
+  window.scrollTo(0,0);
 }
+
+const PIN = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
 
 /* ── SCHEDULE ── */
 const SCHED = [
@@ -393,22 +383,20 @@ const SCHED = [
 
 const schedDaysEl = document.getElementById('sched-days');
 SCHED.forEach((day, di) => {
-  let html = `<div class="day-panel${di===0?' active':''}" id="sched-day-${di}"><div class="sched-timeline">`;
+  let html = `<div class="day-panel${di===0?' active':''}" id="sched-day-${di}">`;
   day.items.forEach(item => {
     const hl = item.highlight ? ' highlight' : '';
     const t  = item.end ? `${fmt(item.start)} – ${fmt(item.end)}` : fmt(item.start);
     html += `<div class="sched-item${hl}">
-      <div class="sched-card">
-        <div class="sched-time-row">
-          <span class="sched-time">${t}</span>
-          <span class="sched-highlight-star">⭐</span>
-        </div>
+      <div class="sched-time">${t}</div>
+      <div class="sched-body">
         <div class="sched-title">${item.title}</div>
         ${item.desc ? `<div class="sched-desc">${item.desc}</div>` : ''}
-        ${item.venue ? `<div class="sched-venue"><svg width="11" height="11" fill="currentColor" stroke="none" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>${item.venue}</div>` : ''}
-      </div></div>`;
+        ${item.venue ? `<div class="sched-venue">${PIN}${item.venue}</div>` : ''}
+      </div>
+    </div>`;
   });
-  html += `</div></div>`;
+  html += `</div>`;
   schedDaysEl.innerHTML += html;
 });
 function switchSchedDay(idx, btn) {
@@ -420,12 +408,12 @@ function switchSchedDay(idx, btn) {
 
 /* ── PRESENTATION PROGRAM ── */
 const TOPICS = {
-  1:{ color:"var(--t1)", bg:"var(--t1-bg)", border:"var(--t1-border)", short:"Technology-Enhanced STEM", full:"Technology-Enhanced STEM Teaching and Learning" },
-  2:{ color:"var(--t2)", bg:"var(--t2-bg)", border:"var(--t2-border)", short:"Pedagogical Models",       full:"Pedagogical Models and Applications of STEM Education" },
-  3:{ color:"var(--t3)", bg:"var(--t3-bg)", border:"var(--t3-border)", short:"Skills & Re-Skills",       full:"Skills and Re-Skills Development for STEM Literacy" },
-  4:{ color:"var(--t4)", bg:"var(--t4-bg)", border:"var(--t4-border)", short:"Curriculum Studies",       full:"Curriculum Studies and Development" },
-  5:{ color:"var(--t5)", bg:"var(--t5-bg)", border:"var(--t5-border)", short:"Research & Modern Tech",   full:"Research & Development of Modern Technology for Learning Community Based on STEM Education" },
-  6:{ color:"var(--t6)", bg:"var(--t6-bg)", border:"var(--t6-border)", short:"Others",                   full:"Others Related Topics" },
+  1:{ color:"var(--t1)", bg:"var(--t1-bg)", short:"Technology-Enhanced STEM", full:"Technology-Enhanced STEM Teaching and Learning" },
+  2:{ color:"var(--t2)", bg:"var(--t2-bg)", short:"Pedagogical Models",       full:"Pedagogical Models and Applications of STEM Education" },
+  3:{ color:"var(--t3)", bg:"var(--t3-bg)", short:"Skills & Re-Skills",       full:"Skills and Re-Skills Development for STEM Literacy" },
+  4:{ color:"var(--t4)", bg:"var(--t4-bg)", short:"Curriculum Studies",       full:"Curriculum Studies and Development" },
+  5:{ color:"var(--t5)", bg:"var(--t5-bg)", short:"Research & Modern Tech",   full:"Research & Development of Modern Technology for Learning Community Based on STEM Education" },
+  6:{ color:"var(--t6)", bg:"var(--t6-bg)", short:"Others",                   full:"Others Related Topics" },
 };
 const PROG_DATA = [
   { day:"Thursday, July 16, 2026", sessions:[
@@ -478,9 +466,8 @@ const PROG_DATA = [
 /* legend */
 const legendEl = document.getElementById('legend');
 Object.entries(TOPICS).forEach(([num, t]) => {
-  legendEl.innerHTML += `<div class="legend-card">
-    <div class="legend-swatch" style="--tc:${t.color}"></div>
-    <div class="legend-num" style="color:${t.color}">${num}</div>
+  legendEl.innerHTML += `<div class="legend-card" style="--tc:${t.color}">
+    <div class="legend-num">${num}</div>
     <div class="legend-label">${t.full}</div>
   </div>`;
 });
@@ -488,31 +475,29 @@ Object.entries(TOPICS).forEach(([num, t]) => {
 /* program */
 const progDaysEl = document.getElementById('prog-days');
 PROG_DATA.forEach((day, di) => {
-  let html = `<div class="prog-panel${di===0?' active':''}" id="prog-day-${di}"><div class="timeline">`;
+  let html = `<div class="prog-panel${di===0?' active':''}" id="prog-day-${di}">`;
   day.sessions.forEach(sess => {
     const total = sess.rooms.reduce((s,r) => s + r.papers.length, 0);
-    html += `<div class="t-node"><div class="t-card">
+    html += `<div class="t-node">
       <div class="t-head">
-        <span class="t-session-tag">Session ${sess.id}</span>
+        <span class="t-session">Session ${sess.id}</span>
         <span class="t-time">${sess.time}</span>
         <span class="t-count">${sess.rooms.length} rooms · ${total} papers</span>
       </div>
-      <div class="room-list">`;
+      <div class="room-grid">`;
     sess.rooms.forEach(r => {
       const t = TOPICS[r.t];
       html += `<div class="room-row">
         <div class="room-row-top">
-          <div class="room-name">${r.room}</div>
-          <div class="topic-chip" style="--tc:${t.color};--tc-bg:${t.bg};--tc-border:${t.border}">
-            <div class="chip-dot"></div>${t.short}
-          </div>
+          <div class="room-name">${PIN}${r.room}</div>
+          <div class="topic-chip" style="--tc:${t.color};--tc-bg:${t.bg}">${t.short}</div>
         </div>
         <div class="papers-wrap">${r.papers.map(p => `<span class="p-code">${p}</span>`).join('')}</div>
       </div>`;
     });
-    html += `</div></div></div>`;
+    html += `</div></div>`;
   });
-  html += `</div></div>`;
+  html += `</div>`;
   progDaysEl.innerHTML += html;
 });
 
@@ -552,9 +537,9 @@ function handleSearch(raw) {
     resultsEl.innerHTML = `<div class="search-not-found">ไม่พบ Paper ID ที่ตรงกับ "<strong>${q}</strong>"</div>`;
     return;
   }
-  const icCal  = '<svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--accent)"/><path fill="#fff" d="M8.5 4.5a.9.9 0 0 1 .9.9V6h5.2v-.6a.9.9 0 1 1 1.8 0V6h.4a1.4 1.4 0 0 1 1.4 1.4v9.2a1.4 1.4 0 0 1-1.4 1.4H7.2a1.4 1.4 0 0 1-1.4-1.4V7.4A1.4 1.4 0 0 1 7.2 6h.4v-.6a.9.9 0 0 1 .9-.9zM7.4 9.6v7h9.2v-7H7.4z"/></svg>';
-  const icClock= '<svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--accent)"/><path fill="#fff" d="M12 5.6a.85.85 0 0 1 .85.85v5.15l2.85 2.85a.85.85 0 0 1-1.2 1.2l-3.1-3.1a.85.85 0 0 1-.25-.6V6.45A.85.85 0 0 1 12 5.6z"/></svg>';
-  const icDoor = '<svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--accent)"/><path fill="#fff" d="M8 5.2a.8.8 0 0 0-.8.8v11.2h-.7a.8.8 0 0 0 0 1.6h11a.8.8 0 0 0 0-1.6h-.7V6a.8.8 0 0 0-.8-.8H8zm6 7a.85.85 0 1 1-1.7 0 .85.85 0 0 1 1.7 0z"/></svg>';
+  const icCal  = '<svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--primary)"/><path fill="#fff" d="M8.5 4.5a.9.9 0 0 1 .9.9V6h5.2v-.6a.9.9 0 1 1 1.8 0V6h.4a1.4 1.4 0 0 1 1.4 1.4v9.2a1.4 1.4 0 0 1-1.4 1.4H7.2a1.4 1.4 0 0 1-1.4-1.4V7.4A1.4 1.4 0 0 1 7.2 6h.4v-.6a.9.9 0 0 1 .9-.9zM7.4 9.6v7h9.2v-7H7.4z"/></svg>';
+  const icClock= '<svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--primary)"/><path fill="#fff" d="M12 5.6a.85.85 0 0 1 .85.85v5.15l2.85 2.85a.85.85 0 0 1-1.2 1.2l-3.1-3.1a.85.85 0 0 1-.25-.6V6.45A.85.85 0 0 1 12 5.6z"/></svg>';
+  const icDoor = '<svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--primary)"/><path fill="#fff" d="M8 5.2a.8.8 0 0 0-.8.8v11.2h-.7a.8.8 0 0 0 0 1.6h11a.8.8 0 0 0 0-1.6h-.7V6a.8.8 0 0 0-.8-.8H8zm6 7a.85.85 0 1 1-1.7 0 .85.85 0 0 1 1.7 0z"/></svg>';
   let html = `<div class="search-meta">พบ <strong>${matches.length}</strong> รายการ</div>`;
   matches.forEach(m => {
     html += `<div class="result-card">
@@ -563,7 +548,7 @@ function handleSearch(raw) {
         <span class="result-badge">${icCal} ${m.day}</span>
         <span class="result-badge">${icClock} Session ${m.session} · ${m.time}</span>
         <span class="result-badge">${icDoor} ${m.room}</span>
-        <span class="result-badge" style="color:${m.topic.color};border-color:${m.topic.border};background:${m.topic.bg}">${m.topic.short}</span>
+        <span class="result-topic" style="--tc:${m.topic.color};--tc-bg:${m.topic.bg}">${m.topic.short}</span>
       </div>
     </div>`;
   });
