@@ -199,7 +199,10 @@ body {
 .pf-btn:active { transform: scale(0.97); }
 .pf-cancel { background: transparent; color: var(--ink-48); border: none; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 500; }
 .pf-error { color: var(--pink); font-size: 13px; margin-top: 12px; display: none; }
-.modal-delete { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--divider-soft); }
+.modal-delete { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--divider-soft); display: flex; gap: 10px; }
+.modal-edit-btn { background: transparent; color: var(--primary); border: 1px solid var(--primary); border-radius: 9999px; padding: 8px 18px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
+.modal-edit-btn:hover { background: var(--primary); color: #fff; }
+.modal-edit-btn:active { transform: scale(0.96); }
 .modal-del-btn { background: transparent; color: var(--pink); border: 1px solid var(--pink); border-radius: 9999px; padding: 8px 18px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
 .modal-del-btn:hover { background: var(--pink); color: #fff; }
 .modal-del-btn:active { transform: scale(0.96); }
@@ -337,7 +340,10 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
     <div class="modal-body">
       <div class="modal-img" id="modal-img" style="display:none;"></div>
       <div class="modal-text" id="modal-text"></div>
-      <div class="modal-delete"><button class="modal-del-btn" onclick="deleteCurrentPost()">🗑 Delete this post (admin)</button></div>
+      <div class="modal-delete">
+        <button class="modal-edit-btn" onclick="editCurrentPost()">✏️ Edit (admin)</button>
+        <button class="modal-del-btn" onclick="deleteCurrentPost()">🗑 Delete (admin)</button>
+      </div>
     </div>
   </div>
 </div>
@@ -346,7 +352,7 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
 <div class="modal-overlay" id="post-modal" onclick="if(event.target===this)closePostForm()">
   <div class="modal">
     <div class="modal-head">
-      <div class="modal-head-text"><div class="modal-title">New Announcement</div></div>
+      <div class="modal-head-text"><div class="modal-title" id="post-modal-title">New Announcement</div></div>
       <button class="modal-close" onclick="closePostForm()">✕</button>
     </div>
     <div class="modal-body">
@@ -380,7 +386,7 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-  import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp }
+  import { getFirestore, collection, addDoc, deleteDoc, updateDoc, doc, onSnapshot, query, orderBy, serverTimestamp }
     from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
   const firebaseConfig = {
@@ -413,6 +419,9 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
   };
   window.fbDeletePost = async (id) => {
     await deleteDoc(doc(db, "announcements", id));
+  };
+  window.fbUpdatePost = async (id, data) => {
+    await updateDoc(doc(db, "announcements", id), data);
   };
 </script>
 
@@ -657,15 +666,35 @@ async function deleteCurrentPost(){
   } catch(e){ console.error(e); alert('Could not delete. Please try again.'); }
 }
 
-/* ── POST FORM ── */
-const POST_PASSWORD = "eit1234";
-function openPostForm(){
-  ['pf-title','pf-body','pf-image','pf-pw'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
-  document.getElementById('pf-error').style.display='none';
+function editCurrentPost(){
+  const n = (window.NEWS || [])[currentPostIndex];
+  if (!n || !n.id){ alert('Cannot edit this post.'); return; }
+  editingId = n.id;
+  document.getElementById('pf-title').value = n.title || '';
+  document.getElementById('pf-body').value  = n.body || '';
+  document.getElementById('pf-image').value = n.image || '';
+  document.getElementById('pf-pw').value = '';
+  document.getElementById('pf-error').style.display = 'none';
+  document.getElementById('post-modal-title').textContent = 'Edit Announcement';
+  document.querySelector('#post-modal .pf-btn').textContent = 'Save Changes';
+  closeModal();
   document.getElementById('post-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-function closePostForm(){ document.getElementById('post-modal').classList.remove('open'); document.body.style.overflow=''; }
+
+/* ── POST FORM ── */
+const POST_PASSWORD = "eit1234";
+let editingId = null;
+function openPostForm(){
+  editingId = null;
+  ['pf-title','pf-body','pf-image','pf-pw'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('pf-error').style.display='none';
+  document.getElementById('post-modal-title').textContent = 'New Announcement';
+  document.querySelector('#post-modal .pf-btn').textContent = 'Post';
+  document.getElementById('post-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePostForm(){ document.getElementById('post-modal').classList.remove('open'); document.body.style.overflow=''; editingId = null; }
 async function submitPost(){
   const title = document.getElementById('pf-title').value.trim();
   const body  = document.getElementById('pf-body').value.trim();
@@ -676,18 +705,23 @@ async function submitPost(){
   if (!title || !body){ err.textContent='Please fill in both title and content.'; err.style.display='block'; return; }
   if (pw !== POST_PASSWORD){ err.textContent='Incorrect password.'; err.style.display='block'; return; }
   if (!window.fbAddPost){ err.textContent='Connection not ready. Please wait a moment and try again.'; err.style.display='block'; return; }
-  const date = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
   err.style.display='none';
-  if (btn){ btn.textContent='Posting…'; btn.disabled=true; }
+  const origLabel = editingId ? 'Save Changes' : 'Post';
+  if (btn){ btn.textContent = editingId ? 'Saving…' : 'Posting…'; btn.disabled=true; }
   try {
-    await window.fbAddPost({ date, title, body, image });
+    if (editingId){
+      await window.fbUpdatePost(editingId, { title, body, image });
+    } else {
+      const date = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+      await window.fbAddPost({ date, title, body, image });
+    }
     closePostForm();
   } catch(e){
     console.error(e);
-    err.textContent='Could not post. Please check your connection and try again.';
+    err.textContent='Could not save. Please check your connection and try again.';
     err.style.display='block';
   } finally {
-    if (btn){ btn.textContent='Post'; btn.disabled=false; }
+    if (btn){ btn.textContent=origLabel; btn.disabled=false; }
   }
 }
 
