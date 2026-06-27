@@ -95,14 +95,7 @@ body {
 .sched-venue svg { color: var(--primary); flex-shrink: 0; }
 
 /* ── PROGRAM ── */
-.prog-intro { padding: 56px 0 0; }
-.section-label { font-size: 12px; font-weight: 600; letter-spacing: -0.12px; text-transform: uppercase; color: var(--ink-48); margin-bottom: 16px; }
-.legend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--divider-soft); border: 1px solid var(--divider-soft); border-radius: 18px; overflow: hidden; }
-.legend-card { background: var(--canvas); padding: 16px 18px; display: flex; align-items: flex-start; gap: 12px; }
-.legend-num { font-weight: 600; font-size: 17px; color: var(--tc); flex-shrink: 0; }
-.legend-label { font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80); line-height: 1.43; }
-
-.search-section { padding: 36px 0 0; }
+.search-section { padding: 48px 0 0; }
 .search-box { background: var(--canvas); border: 1px solid var(--hairline); border-radius: 18px; padding: 20px 22px; transition: border-color .2s, box-shadow .2s; }
 .search-box:focus-within { border-color: var(--primary-focus); box-shadow: 0 0 0 4px rgba(0,113,227,.12); }
 .search-row { display: flex; align-items: center; gap: 12px; }
@@ -122,6 +115,13 @@ body {
 .result-badge svg { flex-shrink: 0; }
 .result-topic { display: inline-flex; align-items: center; border-radius: 9999px; padding: 5px 14px; font-size: 14px; letter-spacing: -0.224px; color: var(--tc); background: var(--tc-bg); }
 .search-not-found { text-align: center; padding: 28px; color: var(--ink-48); font-size: 17px; }
+
+.prog-intro { padding: 40px 0 0; }
+.section-label { font-size: 12px; font-weight: 600; letter-spacing: -0.12px; text-transform: uppercase; color: var(--ink-48); margin-bottom: 16px; }
+.legend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--divider-soft); border: 1px solid var(--divider-soft); border-radius: 18px; overflow: hidden; }
+.legend-card { background: var(--canvas); padding: 14px 16px; display: flex; align-items: stretch; gap: 14px; }
+.legend-num { width: 40px; flex-shrink: 0; border-radius: 10px; background: var(--tc); color: #fff; font-weight: 700; font-size: 20px; display: flex; align-items: center; justify-content: center; }
+.legend-label { font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80); line-height: 1.43; display: flex; align-items: center; }
 
 .prog-switcher { display: flex; gap: 8px; margin: 36px 0 0; flex-wrap: nowrap; }
 .prog-btn { flex: 1; min-width: 0; text-align: center; background: var(--canvas); border: 1px solid var(--hairline); border-radius: 9999px; padding: 11px 14px; font-size: 14px; font-weight: 400; letter-spacing: -0.224px; color: var(--ink-80); cursor: pointer; transition: all .2s; white-space: nowrap; }
@@ -185,6 +185,13 @@ body {
 .modal-text { font-size: 17px; font-weight: 400; line-height: 1.6; color: var(--ink-80); white-space: pre-wrap; word-wrap: break-word; }
 .modal-text a { color: var(--primary); text-decoration: none; }
 .modal-text a:hover { text-decoration: underline; }
+.modal-delete { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--divider-soft); display: flex; gap: 10px; }
+.modal-edit-btn { background: transparent; color: var(--primary); border: 1px solid var(--primary); border-radius: 9999px; padding: 8px 18px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
+.modal-edit-btn:hover { background: var(--primary); color: #fff; }
+.modal-edit-btn:active { transform: scale(0.96); }
+.modal-del-btn { background: transparent; color: var(--pink); border: 1px solid var(--pink); border-radius: 9999px; padding: 8px 18px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
+.modal-del-btn:hover { background: var(--pink); color: #fff; }
+.modal-del-btn:active { transform: scale(0.96); }
 
 /* ── POST FORM ── */
 .pf-field { margin-bottom: 16px; }
@@ -199,13 +206,6 @@ body {
 .pf-btn:active { transform: scale(0.97); }
 .pf-cancel { background: transparent; color: var(--ink-48); border: none; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 500; }
 .pf-error { color: var(--pink); font-size: 13px; margin-top: 12px; display: none; }
-.modal-delete { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--divider-soft); display: flex; gap: 10px; }
-.modal-edit-btn { background: transparent; color: var(--primary); border: 1px solid var(--primary); border-radius: 9999px; padding: 8px 18px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
-.modal-edit-btn:hover { background: var(--primary); color: #fff; }
-.modal-edit-btn:active { transform: scale(0.96); }
-.modal-del-btn { background: transparent; color: var(--pink); border: 1px solid var(--pink); border-radius: 9999px; padding: 8px 18px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
-.modal-del-btn:hover { background: var(--pink); color: #fff; }
-.modal-del-btn:active { transform: scale(0.96); }
 
 /* ── FOOTER ── */
 footer { background: var(--parchment); padding: 48px 22px; text-align: center; font-size: 12px; letter-spacing: -0.12px; color: var(--ink-48); }
@@ -283,10 +283,6 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
     </div>
   </div>
   <div class="container">
-    <div class="prog-intro">
-      <div class="section-label">Topic Categories</div>
-      <div class="legend-grid" id="legend"></div>
-    </div>
     <div class="search-section">
       <div class="search-box">
         <div class="search-row">
@@ -296,6 +292,10 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
         </div>
         <div class="search-results" id="searchResults"></div>
       </div>
+    </div>
+    <div class="prog-intro">
+      <div class="section-label">Topic Categories</div>
+      <div class="legend-grid" id="legend"></div>
     </div>
     <div class="prog-switcher">
       <button class="prog-btn active" onclick="switchProgDay(0,this)">Thursday · July 16</button>
@@ -384,47 +384,6 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
 </div>
 
 <footer>iSTEM-Ed 2026 · International STEM Education Conference · Suan Sunandha Rajabhat University</footer>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-  import { getFirestore, collection, addDoc, deleteDoc, updateDoc, doc, onSnapshot, query, orderBy, serverTimestamp }
-    from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyDd6CByeddq-u-IJg6G7QpYj8ZK-DNOZ-I",
-    authDomain: "istem-ed-2026.firebaseapp.com",
-    projectId: "istem-ed-2026",
-    storageBucket: "istem-ed-2026.firebasestorage.app",
-    messagingSenderId: "124698840434",
-    appId: "1:124698840434:web:7aad78831cf7292aa3e1eb"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const colRef = collection(db, "announcements");
-
-  // Live listener — updates the feed for everyone in real time
-  const q = query(colRef, orderBy("createdAt", "desc"));
-  onSnapshot(q, (snap) => {
-    window.NEWS = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    if (typeof renderNews === 'function') renderNews();
-  }, (err) => {
-    console.error("Firestore read error:", err);
-    const feed = document.getElementById('news-feed');
-    if (feed) feed.innerHTML = '<div class="news-empty">Unable to load announcements. Please refresh.</div>';
-  });
-
-  // expose write helpers to the non-module script
-  window.fbAddPost = async (data) => {
-    await addDoc(colRef, { ...data, createdAt: serverTimestamp() });
-  };
-  window.fbDeletePost = async (id) => {
-    await deleteDoc(doc(db, "announcements", id));
-  };
-  window.fbUpdatePost = async (id, data) => {
-    await updateDoc(doc(db, "announcements", id), data);
-  };
-</script>
 
 <script>
 function fmt(h){ const hh=Math.floor(h), mm=Math.round((h-hh)*60); return `${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`; }
@@ -615,25 +574,18 @@ function handleSearch(raw){
 }
 function clearSearch(){ document.getElementById('searchInput').value=''; handleSearch(''); document.getElementById('searchInput').focus(); }
 
-/* ═══ ANNOUNCEMENTS (Firebase Firestore) ═══
-   Data is stored in the cloud. Posts are live for everyone.
-   window.NEWS is populated by the Firebase listener at the bottom of the page. */
+/* ═══ ANNOUNCEMENTS (Firebase Firestore) ═══ */
 window.NEWS = window.NEWS || [];
 
 function escapeHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function linkify(s){ return escapeHtml(s).replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>'); }
-
-/* แปลงลิงก์ Google Drive ให้เป็นลิงก์แสดงรูปได้ */
 function driveImageUrl(url){
   if (!url) return '';
   url = url.trim();
-  // รูปแบบ /file/d/FILEID/view
   let m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
   if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w1200`;
-  // รูปแบบ ?id=FILEID หรือ open?id=FILEID
   m = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
   if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w1200`;
-  // ถ้าไม่ใช่ลิงก์ Drive ก็ใช้ตามเดิม (เช่นลิงก์รูปทั่วไป)
   return url;
 }
 
@@ -675,10 +627,8 @@ async function deleteCurrentPost(){
   if (pw === null) return;
   if (pw !== POST_PASSWORD){ alert('Incorrect password.'); return; }
   if (!confirm('Delete "' + n.title + '"?')) return;
-  try {
-    await window.fbDeletePost(n.id);
-    closeModal();
-  } catch(e){ console.error(e); alert('Could not delete. Please try again.'); }
+  try { await window.fbDeletePost(n.id); closeModal(); }
+  catch(e){ console.error(e); alert('Could not delete. Please try again.'); }
 }
 
 function editCurrentPost(){
@@ -724,9 +674,8 @@ async function submitPost(){
   const origLabel = editingId ? 'Save Changes' : 'Post';
   if (btn){ btn.textContent = editingId ? 'Saving…' : 'Posting…'; btn.disabled=true; }
   try {
-    if (editingId){
-      await window.fbUpdatePost(editingId, { title, body, image });
-    } else {
+    if (editingId){ await window.fbUpdatePost(editingId, { title, body, image }); }
+    else {
       const date = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
       await window.fbAddPost({ date, title, body, image });
     }
@@ -735,12 +684,43 @@ async function submitPost(){
     console.error(e);
     err.textContent='Could not save. Please check your connection and try again.';
     err.style.display='block';
-  } finally {
-    if (btn){ btn.textContent=origLabel; btn.disabled=false; }
-  }
+  } finally { if (btn){ btn.textContent=origLabel; btn.disabled=false; } }
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape'){ closeModal(); closePostForm(); } });
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, deleteDoc, updateDoc, doc, onSnapshot, query, orderBy, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDd6CByeddq-u-IJg6G7QpYj8ZK-DNOZ-I",
+    authDomain: "istem-ed-2026.firebaseapp.com",
+    projectId: "istem-ed-2026",
+    storageBucket: "istem-ed-2026.firebasestorage.app",
+    messagingSenderId: "124698840434",
+    appId: "1:124698840434:web:7aad78831cf7292aa3e1eb"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const colRef = collection(db, "announcements");
+
+  const qy = query(colRef, orderBy("createdAt", "desc"));
+  onSnapshot(qy, (snap) => {
+    window.NEWS = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    if (typeof renderNews === 'function') renderNews();
+  }, (err) => {
+    console.error("Firestore read error:", err);
+    const feed = document.getElementById('news-feed');
+    if (feed) feed.innerHTML = '<div class="news-empty">Unable to load announcements. Please refresh.</div>';
+  });
+
+  window.fbAddPost = async (data) => { await addDoc(colRef, { ...data, createdAt: serverTimestamp() }); };
+  window.fbDeletePost = async (id) => { await deleteDoc(doc(db, "announcements", id)); };
+  window.fbUpdatePost = async (id, data) => { await updateDoc(doc(db, "announcements", id), data); };
 </script>
 </body>
 </html>
