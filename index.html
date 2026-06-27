@@ -338,6 +338,7 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
+      <div class="modal-img" id="modal-img" style="display:none;"></div>
       <div class="modal-text" id="modal-text"></div>
       <div class="modal-delete">
         <button class="modal-edit-btn" onclick="editCurrentPost()">✏️ Edit (admin)</button>
@@ -363,6 +364,11 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
         <label>Content *</label>
         <textarea id="pf-body" placeholder="Type your announcement… links are supported."></textarea>
         <div class="pf-hint">Links become clickable · line breaks are preserved</div>
+      </div>
+      <div class="pf-field">
+        <label>Google Drive image link (optional)</label>
+        <input type="text" id="pf-image" placeholder="Paste the Drive share link…">
+        <div class="pf-hint">In Drive: Share → set to "Anyone with the link" → Copy link → paste here. The image is auto-scaled to fit.</div>
       </div>
       <div class="pf-field">
         <label>Password *</label>
@@ -617,6 +623,20 @@ window.NEWS = window.NEWS || [];
 function escapeHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function linkify(s){ return escapeHtml(s).replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>'); }
 
+/* แปลงลิงก์ Google Drive ให้เป็นลิงก์แสดงรูปได้ */
+function driveImageUrl(url){
+  if (!url) return '';
+  url = url.trim();
+  // รูปแบบ /file/d/FILEID/view
+  let m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+  if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w1200`;
+  // รูปแบบ ?id=FILEID หรือ open?id=FILEID
+  m = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w1200`;
+  // ถ้าไม่ใช่ลิงก์ Drive ก็ใช้ตามเดิม (เช่นลิงก์รูปทั่วไป)
+  return url;
+}
+
 function renderNews(){
   const feed = document.getElementById('news-feed');
   if (!feed) return;
@@ -627,6 +647,7 @@ function renderNews(){
       <div class="news-card-top"><span class="news-pin">News</span><span class="news-date">${escapeHtml(n.date)}</span></div>
       <div class="news-title">${escapeHtml(n.title)}</div>
       <div class="news-excerpt">${escapeHtml(n.body)}</div>
+      ${n.image ? `<div class="news-thumb"><img src="${escapeHtml(driveImageUrl(n.image))}" alt="" loading="lazy" onerror="this.parentNode.style.display='none'"></div>` : ''}
       <div class="news-readmore">Read more →</div>
     </div>`).join('');
 }
@@ -639,6 +660,9 @@ function openModal(i){
   document.getElementById('modal-date').textContent = n.date;
   document.getElementById('modal-title').textContent = n.title;
   document.getElementById('modal-text').innerHTML = linkify(n.body);
+  const imgWrap = document.getElementById('modal-img');
+  if (n.image){ imgWrap.innerHTML = `<img src="${escapeHtml(driveImageUrl(n.image))}" alt="" onerror="this.parentNode.style.display='none'">`; imgWrap.style.display='flex'; }
+  else { imgWrap.style.display='none'; }
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -663,6 +687,7 @@ function editCurrentPost(){
   editingId = n.id;
   document.getElementById('pf-title').value = n.title || '';
   document.getElementById('pf-body').value  = n.body || '';
+  document.getElementById('pf-image').value = n.image || '';
   document.getElementById('pf-pw').value = '';
   document.getElementById('pf-error').style.display = 'none';
   document.getElementById('post-modal-title').textContent = 'Edit Announcement';
@@ -677,7 +702,7 @@ const POST_PASSWORD = "eit1234";
 let editingId = null;
 function openPostForm(){
   editingId = null;
-  ['pf-title','pf-body','pf-pw'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  ['pf-title','pf-body','pf-image','pf-pw'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
   document.getElementById('pf-error').style.display='none';
   document.getElementById('post-modal-title').textContent = 'New Announcement';
   document.querySelector('#post-modal .pf-btn').textContent = 'Post';
@@ -688,6 +713,7 @@ function closePostForm(){ document.getElementById('post-modal').classList.remove
 async function submitPost(){
   const title = document.getElementById('pf-title').value.trim();
   const body  = document.getElementById('pf-body').value.trim();
+  const image = document.getElementById('pf-image').value.trim();
   const pw    = document.getElementById('pf-pw').value;
   const err   = document.getElementById('pf-error');
   const btn   = document.querySelector('#post-modal .pf-btn');
@@ -699,10 +725,10 @@ async function submitPost(){
   if (btn){ btn.textContent = editingId ? 'Saving…' : 'Posting…'; btn.disabled=true; }
   try {
     if (editingId){
-      await window.fbUpdatePost(editingId, { title, body });
+      await window.fbUpdatePost(editingId, { title, body, image });
     } else {
       const date = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
-      await window.fbAddPost({ date, title, body });
+      await window.fbAddPost({ date, title, body, image });
     }
     closePostForm();
   } catch(e){
