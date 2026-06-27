@@ -12,19 +12,16 @@
   --primary: #0066cc;
   --primary-focus: #0071e3;
   --primary-on-dark: #2997ff;
+  --pink: #d6006c;
   --ink: #1d1d1f;
   --ink-80: #333333;
   --ink-48: #7a7a7a;
   --canvas: #ffffff;
   --parchment: #f5f5f7;
   --pearl: #fafafc;
-  --tile-dark: #272729;
-  --tile-dark-2: #2a2a2c;
   --hairline: #e0e0e0;
   --divider-soft: #f0f0f0;
   --on-dark: #ffffff;
-  --body-muted: #cccccc;
-  /* topic accents — kept subtle, Apple-flat */
   --t1: #0066cc; --t1-bg: #f0f6ff;
   --t2: #0d8a7e; --t2-bg: #eefaf8;
   --t3: #b25e00; --t3-bg: #fff6ec;
@@ -41,63 +38,35 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── GLOBAL NAV (true black, thin) ── */
-.global-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: #000; color: var(--on-dark);
-}
-.gn-inner {
-  max-width: 1440px; margin: 0 auto; padding: 0 22px; height: 48px;
-  display: flex; align-items: center; gap: 0;
-}
-.gn-logo {
-  font-size: 15px; font-weight: 600; letter-spacing: -0.2px;
-  color: var(--on-dark); flex-shrink: 0;
-}
+/* ── GLOBAL NAV ── */
+.global-nav { position: sticky; top: 0; z-index: 100; background: #000; color: var(--on-dark); }
+.gn-inner { max-width: 1440px; margin: 0 auto; padding: 0 22px; height: 48px; display: flex; align-items: center; }
+.gn-logo { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; color: var(--on-dark); flex-shrink: 0; }
 .gn-logo span { color: var(--primary-on-dark); }
 .gn-tabs { display: flex; gap: 4px; margin-left: auto; }
 .gn-tab {
-  font-size: 12px; font-weight: 400; letter-spacing: -0.12px;
-  color: #d2d2d7; padding: 7px 13px; border-radius: 9999px;
-  cursor: pointer; border: none; background: transparent;
+  font-size: 12px; font-weight: 400; letter-spacing: -0.12px; color: #d2d2d7;
+  padding: 7px 13px; border-radius: 9999px; cursor: pointer; border: none; background: transparent;
   transition: color .2s, background .2s; white-space: nowrap;
 }
 .gn-tab:hover { color: #fff; }
 .gn-tab.active { background: var(--primary); color: #fff; }
-.gn-tab.active:hover { background: var(--primary); }
 
-/* ── PAGES ── */
 .page { display: none; }
 .page.active { display: block; }
 
-/* ── HERO TILE ── */
-.hero {
-  background: var(--parchment); text-align: center;
-  padding: 80px 22px 72px;
-}
-.hero .eyebrow {
-  font-size: 14px; font-weight: 400; letter-spacing: -0.224px;
-  color: var(--ink-48); margin-bottom: 14px;
-}
-.hero h1 {
-  font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.5px;
-  color: var(--ink);
-}
-.hero h1 em { font-style: normal; color: var(--primary); }
-.hero .lead {
-  font-size: 24px; font-weight: 300; line-height: 1.4; letter-spacing: 0;
-  color: var(--ink-80); margin-top: 12px;
-}
-.hero-meta {
-  margin-top: 26px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
-}
+/* ── HERO ── */
+.hero { background: #0012c1; text-align: center; padding: 80px 22px 72px; }
+.hero .eyebrow { font-size: 14px; font-weight: 400; letter-spacing: -0.224px; color: rgba(255,255,255,.72); margin-bottom: 14px; }
+.hero h1 { font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.5px; color: #fff; }
+.hero h1 em { font-style: normal; color: #ffc845; }
+.hero .lead { font-size: 24px; font-weight: 300; line-height: 1.4; color: rgba(255,255,255,.85); margin-top: 12px; }
+.hero-meta { margin-top: 26px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
 .meta-chip {
-  background: var(--canvas); border: 1px solid var(--hairline);
-  border-radius: 9999px; padding: 9px 18px;
-  font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80);
+  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3);
+  border-radius: 9999px; padding: 9px 18px; font-size: 14px; letter-spacing: -0.224px; color: #fff;
 }
 
-/* ── CONTENT CONTAINER ── */
 .container { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
 
 /* ── SCHEDULE ── */
@@ -117,83 +86,45 @@ body {
 
 .sched-item { padding: 32px 0; border-top: 1px solid var(--divider-soft); display: flex; gap: 28px; align-items: baseline; }
 .sched-item:first-child { border-top: none; }
-.sched-time {
-  font-size: 17px; font-weight: 600; letter-spacing: -0.374px; color: var(--primary);
-  flex-shrink: 0; width: 140px;
-}
+.sched-time { font-size: 17px; font-weight: 600; letter-spacing: -0.374px; color: var(--pink); flex-shrink: 0; width: 140px; }
 .sched-body { flex: 1; min-width: 0; }
 .sched-title { font-size: 28px; font-weight: 600; line-height: 1.1; letter-spacing: -0.4px; color: var(--ink); }
 .sched-item.highlight .sched-title { color: var(--primary); }
 .sched-desc { font-size: 17px; font-weight: 400; color: var(--ink-80); margin-top: 6px; }
-.sched-venue {
-  margin-top: 12px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-48);
-  display: inline-flex; align-items: center; gap: 7px;
-}
+.sched-venue { margin-top: 12px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-48); display: inline-flex; align-items: center; gap: 7px; }
 .sched-venue svg { color: var(--primary); flex-shrink: 0; }
 
-/* ── PRESENTATION PROGRAM ── */
+/* ── PROGRAM ── */
 .prog-intro { padding: 56px 0 0; }
-.section-label {
-  font-size: 12px; font-weight: 600; letter-spacing: -0.12px; text-transform: uppercase;
-  color: var(--ink-48); margin-bottom: 16px;
-}
+.section-label { font-size: 12px; font-weight: 600; letter-spacing: -0.12px; text-transform: uppercase; color: var(--ink-48); margin-bottom: 16px; }
 .legend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--divider-soft); border: 1px solid var(--divider-soft); border-radius: 18px; overflow: hidden; }
 .legend-card { background: var(--canvas); padding: 16px 18px; display: flex; align-items: flex-start; gap: 12px; }
 .legend-num { font-weight: 600; font-size: 17px; color: var(--tc); flex-shrink: 0; }
 .legend-label { font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80); line-height: 1.43; }
 
-/* Search */
 .search-section { padding: 36px 0 0; }
-.search-box {
-  background: var(--canvas); border: 1px solid var(--hairline); border-radius: 18px;
-  padding: 20px 22px; transition: border-color .2s, box-shadow .2s;
-}
+.search-box { background: var(--canvas); border: 1px solid var(--hairline); border-radius: 18px; padding: 20px 22px; transition: border-color .2s, box-shadow .2s; }
 .search-box:focus-within { border-color: var(--primary-focus); box-shadow: 0 0 0 4px rgba(0,113,227,.12); }
 .search-row { display: flex; align-items: center; gap: 12px; }
 .search-icon { color: var(--ink-48); flex-shrink: 0; }
-.search-input {
-  flex: 1; min-width: 0; border: none; outline: none;
-  font-family: inherit; font-size: 17px; font-weight: 400; letter-spacing: -0.374px;
-  color: var(--ink); background: transparent;
-}
+.search-input { flex: 1; min-width: 0; border: none; outline: none; font-family: inherit; font-size: 17px; font-weight: 400; letter-spacing: -0.374px; color: var(--ink); background: transparent; }
 .search-input::placeholder { color: var(--ink-48); }
-.search-clear {
-  background: var(--parchment); border: none; border-radius: 9999px;
-  padding: 7px 14px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80);
-  cursor: pointer; display: none; flex-shrink: 0;
-}
-.search-clear:active { transform: scale(0.95); }
+.search-clear { background: var(--parchment); border: none; border-radius: 9999px; padding: 7px 14px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80); cursor: pointer; display: none; flex-shrink: 0; }
 .search-results { display: none; margin-top: 20px; border-top: 1px solid var(--divider-soft); padding-top: 20px; }
 .search-results.visible { display: block; }
 .search-meta { font-size: 14px; letter-spacing: -0.224px; color: var(--ink-48); margin-bottom: 16px; }
 .search-meta strong { color: var(--primary); font-weight: 600; }
-.result-card {
-  display: flex; align-items: flex-start; gap: 16px;
-  padding: 16px 0; border-top: 1px solid var(--divider-soft); flex-wrap: wrap;
-}
+.result-card { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-top: 1px solid var(--divider-soft); flex-wrap: wrap; }
 .result-card:first-of-type { border-top: none; }
 .result-paper { font-weight: 600; font-size: 17px; color: var(--primary); min-width: 80px; letter-spacing: -0.374px; }
 .result-info { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.result-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80);
-}
+.result-badge { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80); }
 .result-badge svg { flex-shrink: 0; }
-.result-topic {
-  display: inline-flex; align-items: center;
-  border-radius: 9999px; padding: 5px 14px; font-size: 14px; font-weight: 400; letter-spacing: -0.224px;
-  color: var(--tc); background: var(--tc-bg);
-}
+.result-topic { display: inline-flex; align-items: center; border-radius: 9999px; padding: 5px 14px; font-size: 14px; letter-spacing: -0.224px; color: var(--tc); background: var(--tc-bg); }
 .search-not-found { text-align: center; padding: 28px; color: var(--ink-48); font-size: 17px; }
 
-/* Program switcher */
 .prog-switcher { display: flex; gap: 8px; margin: 36px 0 0; flex-wrap: nowrap; }
-.prog-btn {
-  flex: 1; min-width: 0; text-align: center;
-  background: var(--canvas); border: 1px solid var(--hairline); border-radius: 9999px;
-  padding: 11px 14px; font-size: 14px; font-weight: 400; letter-spacing: -0.224px;
-  color: var(--ink-80); cursor: pointer; transition: all .2s; white-space: nowrap;
-}
+.prog-btn { flex: 1; min-width: 0; text-align: center; background: var(--canvas); border: 1px solid var(--hairline); border-radius: 9999px; padding: 11px 14px; font-size: 14px; font-weight: 400; letter-spacing: -0.224px; color: var(--ink-80); cursor: pointer; transition: all .2s; white-space: nowrap; }
 .prog-btn:hover { border-color: var(--primary); color: var(--primary); }
 .prog-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
 .prog-btn:active { transform: scale(0.95); }
@@ -204,39 +135,77 @@ body {
 .t-node { margin-bottom: 56px; }
 .t-node:last-child { margin-bottom: 0; }
 .t-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
-.t-session {
-  font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
-  color: #fff; background: var(--primary); border-radius: 9999px; padding: 5px 14px; flex-shrink: 0;
-}
-.t-time { font-size: 28px; font-weight: 600; letter-spacing: -0.4px; color: var(--ink); }
+.t-session { font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: #fff; background: var(--primary); border-radius: 9999px; padding: 5px 14px; flex-shrink: 0; }
+.t-time { font-size: 28px; font-weight: 600; letter-spacing: -0.4px; color: var(--pink); }
 .t-count { font-size: 14px; letter-spacing: -0.224px; color: var(--ink-48); margin-left: auto; }
 .room-grid { border: 1px solid var(--hairline); border-radius: 18px; overflow: hidden; }
 .room-row { display: flex; flex-direction: column; gap: 12px; padding: 20px 22px; border-top: 1px solid var(--divider-soft); }
 .room-row:first-child { border-top: none; }
 .room-row-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.room-name {
-  font-size: 17px; font-weight: 600; letter-spacing: -0.374px; color: var(--ink);
-  display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; min-width: 150px;
-}
+.room-name { font-size: 17px; font-weight: 600; letter-spacing: -0.374px; color: var(--ink); display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; min-width: 150px; }
 .room-name svg { color: var(--primary); flex-shrink: 0; }
-.topic-chip {
-  display: inline-flex; align-items: center; border-radius: 9999px;
-  padding: 4px 13px; font-size: 14px; letter-spacing: -0.224px;
-  color: var(--tc); background: var(--tc-bg); white-space: nowrap;
-}
+.topic-chip { display: inline-flex; align-items: center; border-radius: 9999px; padding: 4px 13px; font-size: 14px; letter-spacing: -0.224px; color: var(--tc); background: var(--tc-bg); white-space: nowrap; }
 .papers-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
-.p-code {
-  background: var(--parchment); border-radius: 9999px;
-  padding: 5px 13px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80);
-  white-space: nowrap;
-}
+.p-code { background: var(--parchment); border-radius: 9999px; padding: 5px 13px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80); white-space: nowrap; }
 .p-code.highlight { background: var(--primary); color: #fff; font-weight: 500; }
 
+/* ── ANNOUNCEMENTS ── */
+.news-section { padding: 48px 0 96px; }
+.news-postbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+.news-post-btn { background: var(--primary); color: #fff; border: none; border-radius: 9999px; padding: 10px 22px; font-family: inherit; font-size: 15px; font-weight: 600; letter-spacing: -0.3px; cursor: pointer; transition: background .2s; }
+.news-post-btn:hover { background: var(--primary-focus); }
+.news-post-btn:active { transform: scale(0.96); }
+.news-feed { display: flex; flex-direction: column; gap: 16px; }
+.news-card { background: var(--canvas); border: 1px solid var(--hairline); border-radius: 18px; padding: 22px 24px; cursor: pointer; transition: border-color .2s, transform .12s; text-align: left; }
+.news-card:hover { border-color: var(--primary); }
+.news-card:active { transform: scale(0.99); }
+.news-card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.news-pin { font-size: 11px; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; color: #fff; background: var(--pink); border-radius: 9999px; padding: 3px 11px; }
+.news-date { font-size: 13px; letter-spacing: -0.224px; color: var(--ink-48); }
+.news-title { font-size: 22px; font-weight: 600; line-height: 1.2; letter-spacing: -0.4px; color: var(--ink); margin-bottom: 8px; }
+.news-excerpt { font-size: 16px; font-weight: 400; line-height: 1.5; color: var(--ink-80); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.news-thumb { margin-top: 14px; width: 100%; max-height: 200px; border-radius: 12px; overflow: hidden; background: var(--parchment); display: flex; align-items: center; justify-content: center; }
+.news-thumb img { width: 100%; height: 100%; max-height: 200px; object-fit: cover; display: block; }
+.news-readmore { margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--primary); letter-spacing: -0.224px; }
+.news-empty { text-align: center; padding: 64px 20px; color: var(--ink-48); font-size: 17px; }
+
+/* ── MODAL ── */
+.modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,.5); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.open { display: flex; }
+.modal { background: var(--canvas); border-radius: 22px; max-width: 680px; width: 100%; max-height: 86vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+.modal-head { display: flex; align-items: flex-start; gap: 12px; padding: 24px 26px 16px; border-bottom: 1px solid var(--divider-soft); }
+.modal-head-text { flex: 1; min-width: 0; }
+.modal-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.modal-title { font-size: 26px; font-weight: 600; line-height: 1.15; letter-spacing: -0.5px; color: var(--ink); }
+.modal-close { flex-shrink: 0; width: 36px; height: 36px; border-radius: 9999px; border: none; background: var(--parchment); color: var(--ink-80); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: background .2s; }
+.modal-close:hover { background: var(--hairline); }
+.modal-body { padding: 22px 26px 28px; overflow-y: auto; }
+.modal-img { width: 100%; border-radius: 14px; margin-bottom: 20px; background: var(--parchment); overflow: hidden; display: flex; justify-content: center; }
+.modal-img img { max-width: 100%; height: auto; display: block; }
+.modal-text { font-size: 17px; font-weight: 400; line-height: 1.6; color: var(--ink-80); white-space: pre-wrap; word-wrap: break-word; }
+.modal-text a { color: var(--primary); text-decoration: none; }
+.modal-text a:hover { text-decoration: underline; }
+
+/* ── POST FORM ── */
+.pf-field { margin-bottom: 16px; }
+.pf-field label { display: block; font-size: 13px; font-weight: 600; letter-spacing: -0.2px; color: var(--ink); margin-bottom: 6px; }
+.pf-field input, .pf-field textarea { width: 100%; border: 1px solid var(--hairline); border-radius: 12px; padding: 11px 13px; font-family: inherit; font-size: 16px; letter-spacing: -0.3px; color: var(--ink); background: var(--canvas); outline: none; transition: border-color .2s; }
+.pf-field input:focus, .pf-field textarea:focus { border-color: var(--primary-focus); }
+.pf-field textarea { min-height: 120px; resize: vertical; line-height: 1.5; }
+.pf-hint { font-size: 12px; color: var(--ink-48); margin-top: 5px; }
+.pf-actions { display: flex; gap: 10px; align-items: center; margin-top: 22px; }
+.pf-btn { background: var(--primary); color: #fff; border: none; border-radius: 9999px; padding: 12px 26px; font-family: inherit; font-size: 15px; font-weight: 600; letter-spacing: -0.3px; cursor: pointer; }
+.pf-btn:hover { background: var(--primary-focus); }
+.pf-btn:active { transform: scale(0.97); }
+.pf-cancel { background: transparent; color: var(--ink-48); border: none; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 500; }
+.pf-error { color: var(--pink); font-size: 13px; margin-top: 12px; display: none; }
+.modal-delete { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--divider-soft); }
+.modal-del-btn { background: transparent; color: var(--pink); border: 1px solid var(--pink); border-radius: 9999px; padding: 8px 18px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
+.modal-del-btn:hover { background: var(--pink); color: #fff; }
+.modal-del-btn:active { transform: scale(0.96); }
+
 /* ── FOOTER ── */
-footer {
-  background: var(--parchment); padding: 48px 22px;
-  text-align: center; font-size: 12px; letter-spacing: -0.12px; color: var(--ink-48);
-}
+footer { background: var(--parchment); padding: 48px 22px; text-align: center; font-size: 12px; letter-spacing: -0.12px; color: var(--ink-48); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 833px) {
@@ -264,18 +233,18 @@ footer {
 </head>
 <body>
 
-<!-- GLOBAL NAV -->
 <nav class="global-nav">
   <div class="gn-inner">
     <div class="gn-logo">iSTEM-Ed <span>2026</span></div>
     <div class="gn-tabs">
       <button class="gn-tab active" onclick="showPage('schedule', this)">Schedule</button>
       <button class="gn-tab" onclick="showPage('program', this)">Presentation Program</button>
+      <button class="gn-tab" onclick="showPage('news', this)">Announcements</button>
     </div>
   </div>
 </nav>
 
-<!-- PAGE: SCHEDULE -->
+<!-- SCHEDULE -->
 <div class="page active" id="page-schedule">
   <div class="hero">
     <div class="eyebrow">11th International Conference on STEM Education</div>
@@ -298,7 +267,7 @@ footer {
   </div>
 </div>
 
-<!-- PAGE: PRESENTATION PROGRAM -->
+<!-- PROGRAM -->
 <div class="page" id="page-program">
   <div class="hero">
     <div class="eyebrow">11th International Conference on STEM Education</div>
@@ -319,8 +288,8 @@ footer {
       <div class="search-box">
         <div class="search-row">
           <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.4-1.42 1.41-5.4-5.39A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
-          <input class="search-input" id="searchInput" type="text" placeholder="ค้นหา Paper ID เช่น P07670 หรือ 670…" autocomplete="off" oninput="handleSearch(this.value)">
-          <button class="search-clear" id="clearBtn" onclick="clearSearch()">ล้าง</button>
+          <input class="search-input" id="searchInput" type="text" placeholder="Search Paper ID, e.g. P07670 or 670…" autocomplete="off" oninput="handleSearch(this.value)">
+          <button class="search-clear" id="clearBtn" onclick="clearSearch()">Clear</button>
         </div>
         <div class="search-results" id="searchResults"></div>
       </div>
@@ -335,30 +304,138 @@ footer {
   </div>
 </div>
 
+<!-- ANNOUNCEMENTS -->
+<div class="page" id="page-news">
+  <div class="hero">
+    <div class="eyebrow">11th International Conference on STEM Education</div>
+    <h1>Announcements</h1>
+    <p class="lead">News &amp; updates from the organizers</p>
+  </div>
+  <div class="container">
+    <div class="news-section">
+      <div class="news-postbar">
+        <button class="news-post-btn" onclick="openPostForm()">＋ New Post</button>
+      </div>
+      <div class="news-feed" id="news-feed"></div>
+    </div>
+  </div>
+</div>
+
+<!-- READ MODAL -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-head-text">
+        <div class="modal-meta">
+          <span class="news-pin">News</span>
+          <span class="news-date" id="modal-date"></span>
+        </div>
+        <div class="modal-title" id="modal-title"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-img" id="modal-img" style="display:none;"></div>
+      <div class="modal-text" id="modal-text"></div>
+      <div class="modal-delete"><button class="modal-del-btn" onclick="deleteCurrentPost()">🗑 Delete this post (admin)</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- POST FORM MODAL -->
+<div class="modal-overlay" id="post-modal" onclick="if(event.target===this)closePostForm()">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-head-text"><div class="modal-title">New Announcement</div></div>
+      <button class="modal-close" onclick="closePostForm()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="pf-field">
+        <label>Title *</label>
+        <input type="text" id="pf-title" placeholder="e.g. Room change for Session III">
+      </div>
+      <div class="pf-field">
+        <label>Content *</label>
+        <textarea id="pf-body" placeholder="Type your announcement… links are supported."></textarea>
+        <div class="pf-hint">Links become clickable · line breaks are preserved</div>
+      </div>
+      <div class="pf-field">
+        <label>Image URL (optional)</label>
+        <input type="text" id="pf-image" placeholder="https://…">
+      </div>
+      <div class="pf-field">
+        <label>Password *</label>
+        <input type="password" id="pf-pw" placeholder="Required to post">
+      </div>
+      <div class="pf-error" id="pf-error"></div>
+      <div class="pf-actions">
+        <button class="pf-btn" onclick="submitPost()">Post</button>
+        <button class="pf-cancel" onclick="closePostForm()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>iSTEM-Ed 2026 · International STEM Education Conference · Suan Sunandha Rajabhat University</footer>
 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDd6CByeddq-u-IJg6G7QpYj8ZK-DNOZ-I",
+    authDomain: "istem-ed-2026.firebaseapp.com",
+    projectId: "istem-ed-2026",
+    storageBucket: "istem-ed-2026.firebasestorage.app",
+    messagingSenderId: "124698840434",
+    appId: "1:124698840434:web:7aad78831cf7292aa3e1eb"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const colRef = collection(db, "announcements");
+
+  // Live listener — updates the feed for everyone in real time
+  const q = query(colRef, orderBy("createdAt", "desc"));
+  onSnapshot(q, (snap) => {
+    window.NEWS = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    if (typeof renderNews === 'function') renderNews();
+  }, (err) => {
+    console.error("Firestore read error:", err);
+    const feed = document.getElementById('news-feed');
+    if (feed) feed.innerHTML = '<div class="news-empty">Unable to load announcements. Please refresh.</div>';
+  });
+
+  // expose write helpers to the non-module script
+  window.fbAddPost = async (data) => {
+    await addDoc(colRef, { ...data, createdAt: serverTimestamp() });
+  };
+  window.fbDeletePost = async (id) => {
+    await deleteDoc(doc(db, "announcements", id));
+  };
+</script>
+
 <script>
-function fmt(h) {
-  const hh = Math.floor(h), mm = Math.round((h-hh)*60);
-  return `${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`;
-}
-function showPage(id, btn) {
+function fmt(h){ const hh=Math.floor(h), mm=Math.round((h-hh)*60); return `${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`; }
+function showPage(id, btn){
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.gn-tab').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  btn.classList.add('active');
+  const pg = document.getElementById('page-'+id);
+  if (pg) pg.classList.add('active');
+  if (btn) btn.classList.add('active');
   window.scrollTo(0,0);
 }
 
 const PIN = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
 
-/* ── SCHEDULE ── */
+/* ── SCHEDULE DATA ── */
 const SCHED = [
   { day:"Wednesday, July 15, 2026", items:[
     { start:8,    end:16,   title:"Youth Innovation",  desc:"Pre-conference creative workshop for students.", venue:"Empress Convention Center 2nd Fl., Chiangmai 3-5", highlight:true },
     { start:13,   end:17,   title:"Registration",      desc:"Conference check-in for all participants.", venue:"Empress Convention Center 2nd Fl.", highlight:true },
-    { start:15.5, end:17,   title:"Committee Meeting", desc:"Briefing for organizers and session chairs.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1, 2", highlight:true },
-    { start:18,   end:20,   title:"Welcome Dinner",    desc:"Lanna-inspired networking and cultural evening.", venue:"Empress Ground Fl., Chao Nang Coffee Shop", highlight:true },
+    { start:15.5, end:17,   title:"Committee Meeting",  desc:"Briefing for organizers and session chairs.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1, 2", highlight:true },
+    { start:18,   end:20,   title:"Welcome Dinner",     desc:"Lanna-inspired networking and cultural evening.", venue:"Empress Ground Fl., Chao Nang Coffee Shop", highlight:true },
   ]},
   { day:"Thursday, July 16, 2026", items:[
     { start:8,     end:12,    title:"Registration",         desc:"Conference check-in for all participants.", venue:"Empress Convention Center 2nd Fl." },
@@ -399,14 +476,14 @@ SCHED.forEach((day, di) => {
   html += `</div>`;
   schedDaysEl.innerHTML += html;
 });
-function switchSchedDay(idx, btn) {
+function switchSchedDay(idx, btn){
   document.querySelectorAll('#sched-days .day-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.day-switcher .day-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('sched-day-'+idx).classList.add('active');
-  btn.classList.add('active');
+  if (btn) btn.classList.add('active');
 }
 
-/* ── PRESENTATION PROGRAM ── */
+/* ── PROGRAM DATA ── */
 const TOPICS = {
   1:{ color:"var(--t1)", bg:"var(--t1-bg)", short:"Technology-Enhanced STEM", full:"Technology-Enhanced STEM Teaching and Learning" },
   2:{ color:"var(--t2)", bg:"var(--t2-bg)", short:"Pedagogical Models",       full:"Pedagogical Models and Applications of STEM Education" },
@@ -463,107 +540,158 @@ const PROG_DATA = [
   ]},
 ];
 
-/* legend */
 const legendEl = document.getElementById('legend');
 Object.entries(TOPICS).forEach(([num, t]) => {
-  legendEl.innerHTML += `<div class="legend-card" style="--tc:${t.color}">
-    <div class="legend-num">${num}</div>
-    <div class="legend-label">${t.full}</div>
-  </div>`;
+  legendEl.innerHTML += `<div class="legend-card" style="--tc:${t.color}"><div class="legend-num">${num}</div><div class="legend-label">${t.full}</div></div>`;
 });
 
-/* program */
 const progDaysEl = document.getElementById('prog-days');
 PROG_DATA.forEach((day, di) => {
   let html = `<div class="prog-panel${di===0?' active':''}" id="prog-day-${di}">`;
   day.sessions.forEach(sess => {
     const total = sess.rooms.reduce((s,r) => s + r.papers.length, 0);
-    html += `<div class="t-node">
-      <div class="t-head">
+    html += `<div class="t-node"><div class="t-head">
         <span class="t-session">Session ${sess.id}</span>
         <span class="t-time">${sess.time}</span>
         <span class="t-count">${sess.rooms.length} rooms · ${total} papers</span>
-      </div>
-      <div class="room-grid">`;
+      </div><div class="room-grid">`;
     sess.rooms.forEach(r => {
       const t = TOPICS[r.t];
-      html += `<div class="room-row">
-        <div class="room-row-top">
+      html += `<div class="room-row"><div class="room-row-top">
           <div class="room-name">${PIN}${r.room}</div>
           <div class="topic-chip" style="--tc:${t.color};--tc-bg:${t.bg}">${t.short}</div>
-        </div>
-        <div class="papers-wrap">${r.papers.map(p => `<span class="p-code">${p}</span>`).join('')}</div>
-      </div>`;
+        </div><div class="papers-wrap">${r.papers.map(p => `<span class="p-code">${p}</span>`).join('')}</div></div>`;
     });
     html += `</div></div>`;
   });
   html += `</div>`;
   progDaysEl.innerHTML += html;
 });
-
-function switchProgDay(idx, btn) {
+function switchProgDay(idx, btn){
   document.querySelectorAll('#prog-days .prog-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.prog-switcher .prog-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('prog-day-'+idx).classList.add('active');
-  btn.classList.add('active');
+  if (btn) btn.classList.add('active');
 }
 
 /* ── SEARCH ── */
-function handleSearch(raw) {
+function handleSearch(raw){
   const q = raw.trim().toUpperCase();
   const clearBtn = document.getElementById('clearBtn');
   const resultsEl = document.getElementById('searchResults');
   document.querySelectorAll('.p-code.highlight').forEach(el => el.classList.remove('highlight'));
-  if (!q) {
-    clearBtn.style.display = 'none';
-    resultsEl.classList.remove('visible');
-    resultsEl.innerHTML = '';
-    return;
-  }
+  if (!q){ clearBtn.style.display='none'; resultsEl.classList.remove('visible'); resultsEl.innerHTML=''; return; }
   clearBtn.style.display = '';
   const matches = [];
-  PROG_DATA.forEach(day => {
-    day.sessions.forEach(sess => {
-      sess.rooms.forEach(room => {
-        room.papers.forEach(pid => {
-          if (pid.toUpperCase().includes(q))
-            matches.push({ pid, day: day.day, session: sess.id, time: sess.time, room: room.room, topic: TOPICS[room.t] });
-        });
-      });
-    });
-  });
+  PROG_DATA.forEach(day => day.sessions.forEach(sess => sess.rooms.forEach(room => room.papers.forEach(pid => {
+    if (pid.toUpperCase().includes(q)) matches.push({ pid, day:day.day, session:sess.id, time:sess.time, room:room.room, topic:TOPICS[room.t] });
+  }))));
   resultsEl.classList.add('visible');
-  if (matches.length === 0) {
-    resultsEl.innerHTML = `<div class="search-not-found">ไม่พบ Paper ID ที่ตรงกับ "<strong>${q}</strong>"</div>`;
-    return;
-  }
+  if (matches.length === 0){ resultsEl.innerHTML = `<div class="search-not-found">No Paper ID found matching "<strong>${q}</strong>"</div>`; return; }
   const icCal  = '<svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--primary)"/><path fill="#fff" d="M8.5 4.5a.9.9 0 0 1 .9.9V6h5.2v-.6a.9.9 0 1 1 1.8 0V6h.4a1.4 1.4 0 0 1 1.4 1.4v9.2a1.4 1.4 0 0 1-1.4 1.4H7.2a1.4 1.4 0 0 1-1.4-1.4V7.4A1.4 1.4 0 0 1 7.2 6h.4v-.6a.9.9 0 0 1 .9-.9zM7.4 9.6v7h9.2v-7H7.4z"/></svg>';
   const icClock= '<svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--primary)"/><path fill="#fff" d="M12 5.6a.85.85 0 0 1 .85.85v5.15l2.85 2.85a.85.85 0 0 1-1.2 1.2l-3.1-3.1a.85.85 0 0 1-.25-.6V6.45A.85.85 0 0 1 12 5.6z"/></svg>';
   const icDoor = '<svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="var(--primary)"/><path fill="#fff" d="M8 5.2a.8.8 0 0 0-.8.8v11.2h-.7a.8.8 0 0 0 0 1.6h11a.8.8 0 0 0 0-1.6h-.7V6a.8.8 0 0 0-.8-.8H8zm6 7a.85.85 0 1 1-1.7 0 .85.85 0 0 1 1.7 0z"/></svg>';
-  let html = `<div class="search-meta">พบ <strong>${matches.length}</strong> รายการ</div>`;
+  let html = `<div class="search-meta">Found <strong>${matches.length}</strong> result${matches.length>1?'s':''}</div>`;
   matches.forEach(m => {
-    html += `<div class="result-card">
-      <div class="result-paper">${m.pid}</div>
-      <div class="result-info">
+    html += `<div class="result-card"><div class="result-paper">${m.pid}</div><div class="result-info">
         <span class="result-badge">${icCal} ${m.day}</span>
         <span class="result-badge">${icClock} Session ${m.session} · ${m.time}</span>
         <span class="result-badge">${icDoor} ${m.room}</span>
         <span class="result-topic" style="--tc:${m.topic.color};--tc-bg:${m.topic.bg}">${m.topic.short}</span>
-      </div>
-    </div>`;
+      </div></div>`;
   });
   resultsEl.innerHTML = html;
-  setTimeout(() => {
-    document.querySelectorAll('.p-code').forEach(el => {
-      if (el.textContent.trim().toUpperCase().includes(q)) el.classList.add('highlight');
-    });
-  }, 50);
+  setTimeout(() => { document.querySelectorAll('.p-code').forEach(el => { if (el.textContent.trim().toUpperCase().includes(q)) el.classList.add('highlight'); }); }, 50);
 }
-function clearSearch() {
-  document.getElementById('searchInput').value = '';
-  handleSearch('');
-  document.getElementById('searchInput').focus();
+function clearSearch(){ document.getElementById('searchInput').value=''; handleSearch(''); document.getElementById('searchInput').focus(); }
+
+/* ═══ ANNOUNCEMENTS (Firebase Firestore) ═══
+   Data is stored in the cloud. Posts are live for everyone.
+   window.NEWS is populated by the Firebase listener at the bottom of the page. */
+window.NEWS = window.NEWS || [];
+
+function escapeHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function linkify(s){ return escapeHtml(s).replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>'); }
+
+function renderNews(){
+  const feed = document.getElementById('news-feed');
+  if (!feed) return;
+  const NEWS = window.NEWS || [];
+  if (!NEWS.length){ feed.innerHTML = '<div class="news-empty">No announcements at this time.</div>'; return; }
+  feed.innerHTML = NEWS.map((n, i) => `
+    <div class="news-card" onclick="openModal(${i})">
+      <div class="news-card-top"><span class="news-pin">News</span><span class="news-date">${escapeHtml(n.date)}</span></div>
+      <div class="news-title">${escapeHtml(n.title)}</div>
+      <div class="news-excerpt">${escapeHtml(n.body)}</div>
+      ${n.image ? `<div class="news-thumb"><img src="${escapeHtml(n.image)}" alt="" loading="lazy" onerror="this.parentNode.style.display='none'"></div>` : ''}
+      <div class="news-readmore">Read more →</div>
+    </div>`).join('');
 }
+
+let currentPostIndex = -1;
+function openModal(i){
+  const n = (window.NEWS || [])[i];
+  if (!n) return;
+  currentPostIndex = i;
+  document.getElementById('modal-date').textContent = n.date;
+  document.getElementById('modal-title').textContent = n.title;
+  document.getElementById('modal-text').innerHTML = linkify(n.body);
+  const imgWrap = document.getElementById('modal-img');
+  if (n.image){ imgWrap.innerHTML = `<img src="${escapeHtml(n.image)}" alt="" onerror="this.parentNode.style.display='none'">`; imgWrap.style.display='flex'; }
+  else { imgWrap.style.display='none'; }
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){ document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; }
+
+async function deleteCurrentPost(){
+  const n = (window.NEWS || [])[currentPostIndex];
+  if (!n || !n.id){ alert('Cannot delete this post.'); return; }
+  const pw = prompt('Enter password to delete this announcement:');
+  if (pw === null) return;
+  if (pw !== POST_PASSWORD){ alert('Incorrect password.'); return; }
+  if (!confirm('Delete "' + n.title + '"?')) return;
+  try {
+    await window.fbDeletePost(n.id);
+    closeModal();
+  } catch(e){ console.error(e); alert('Could not delete. Please try again.'); }
+}
+
+/* ── POST FORM ── */
+const POST_PASSWORD = "eit1234";
+function openPostForm(){
+  ['pf-title','pf-body','pf-image','pf-pw'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('pf-error').style.display='none';
+  document.getElementById('post-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePostForm(){ document.getElementById('post-modal').classList.remove('open'); document.body.style.overflow=''; }
+async function submitPost(){
+  const title = document.getElementById('pf-title').value.trim();
+  const body  = document.getElementById('pf-body').value.trim();
+  const image = document.getElementById('pf-image').value.trim();
+  const pw    = document.getElementById('pf-pw').value;
+  const err   = document.getElementById('pf-error');
+  const btn   = document.querySelector('#post-modal .pf-btn');
+  if (!title || !body){ err.textContent='Please fill in both title and content.'; err.style.display='block'; return; }
+  if (pw !== POST_PASSWORD){ err.textContent='Incorrect password.'; err.style.display='block'; return; }
+  if (!window.fbAddPost){ err.textContent='Connection not ready. Please wait a moment and try again.'; err.style.display='block'; return; }
+  const date = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+  err.style.display='none';
+  if (btn){ btn.textContent='Posting…'; btn.disabled=true; }
+  try {
+    await window.fbAddPost({ date, title, body, image });
+    closePostForm();
+  } catch(e){
+    console.error(e);
+    err.textContent='Could not post. Please check your connection and try again.';
+    err.style.display='block';
+  } finally {
+    if (btn){ btn.textContent='Post'; btn.disabled=false; }
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape'){ closeModal(); closePostForm(); } });
 </script>
 </body>
 </html>
