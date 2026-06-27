@@ -338,7 +338,6 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
-      <div class="modal-img" id="modal-img" style="display:none;"></div>
       <div class="modal-text" id="modal-text"></div>
       <div class="modal-delete">
         <button class="modal-edit-btn" onclick="editCurrentPost()">✏️ Edit (admin)</button>
@@ -364,10 +363,6 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
         <label>Content *</label>
         <textarea id="pf-body" placeholder="Type your announcement… links are supported."></textarea>
         <div class="pf-hint">Links become clickable · line breaks are preserved</div>
-      </div>
-      <div class="pf-field">
-        <label>Image URL (optional)</label>
-        <input type="text" id="pf-image" placeholder="https://…">
       </div>
       <div class="pf-field">
         <label>Password *</label>
@@ -632,7 +627,6 @@ function renderNews(){
       <div class="news-card-top"><span class="news-pin">News</span><span class="news-date">${escapeHtml(n.date)}</span></div>
       <div class="news-title">${escapeHtml(n.title)}</div>
       <div class="news-excerpt">${escapeHtml(n.body)}</div>
-      ${n.image ? `<div class="news-thumb"><img src="${escapeHtml(n.image)}" alt="" loading="lazy" onerror="this.parentNode.style.display='none'"></div>` : ''}
       <div class="news-readmore">Read more →</div>
     </div>`).join('');
 }
@@ -645,9 +639,6 @@ function openModal(i){
   document.getElementById('modal-date').textContent = n.date;
   document.getElementById('modal-title').textContent = n.title;
   document.getElementById('modal-text').innerHTML = linkify(n.body);
-  const imgWrap = document.getElementById('modal-img');
-  if (n.image){ imgWrap.innerHTML = `<img src="${escapeHtml(n.image)}" alt="" onerror="this.parentNode.style.display='none'">`; imgWrap.style.display='flex'; }
-  else { imgWrap.style.display='none'; }
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -672,7 +663,6 @@ function editCurrentPost(){
   editingId = n.id;
   document.getElementById('pf-title').value = n.title || '';
   document.getElementById('pf-body').value  = n.body || '';
-  document.getElementById('pf-image').value = n.image || '';
   document.getElementById('pf-pw').value = '';
   document.getElementById('pf-error').style.display = 'none';
   document.getElementById('post-modal-title').textContent = 'Edit Announcement';
@@ -687,7 +677,7 @@ const POST_PASSWORD = "eit1234";
 let editingId = null;
 function openPostForm(){
   editingId = null;
-  ['pf-title','pf-body','pf-image','pf-pw'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  ['pf-title','pf-body','pf-pw'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
   document.getElementById('pf-error').style.display='none';
   document.getElementById('post-modal-title').textContent = 'New Announcement';
   document.querySelector('#post-modal .pf-btn').textContent = 'Post';
@@ -698,7 +688,6 @@ function closePostForm(){ document.getElementById('post-modal').classList.remove
 async function submitPost(){
   const title = document.getElementById('pf-title').value.trim();
   const body  = document.getElementById('pf-body').value.trim();
-  const image = document.getElementById('pf-image').value.trim();
   const pw    = document.getElementById('pf-pw').value;
   const err   = document.getElementById('pf-error');
   const btn   = document.querySelector('#post-modal .pf-btn');
@@ -710,10 +699,10 @@ async function submitPost(){
   if (btn){ btn.textContent = editingId ? 'Saving…' : 'Posting…'; btn.disabled=true; }
   try {
     if (editingId){
-      await window.fbUpdatePost(editingId, { title, body, image });
+      await window.fbUpdatePost(editingId, { title, body });
     } else {
       const date = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
-      await window.fbAddPost({ date, title, body, image });
+      await window.fbAddPost({ date, title, body });
     }
     closePostForm();
   } catch(e){
