@@ -43,7 +43,6 @@ body {
   font-size: 17px; line-height: 1.47; letter-spacing: -0.374px;
   -webkit-font-smoothing: antialiased;
 }
-
 /* ── GLOBAL NAV ── */
 .global-nav { position: sticky; top: 0; z-index: 100; background: #000; color: var(--on-dark); }
 .gn-inner { max-width: 1440px; margin: 0 auto; padding: 0 22px; height: 48px; display: flex; align-items: center; }
@@ -57,10 +56,8 @@ body {
 }
 .gn-tab:hover { color: #fff; }
 .gn-tab.active { background: var(--primary); color: #fff; }
-
 .page { display: none; }
 .page.active { display: block; }
-
 /* ── HERO ── */
 .hero { background: #0012c1; text-align: center; padding: 80px 22px 72px; }
 .hero .eyebrow { font-size: 14px; font-weight: 400; letter-spacing: -0.224px; color: rgba(255,255,255,.72); margin-bottom: 14px; }
@@ -72,9 +69,7 @@ body {
   background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3);
   border-radius: 9999px; padding: 9px 18px; font-size: 14px; letter-spacing: -0.224px; color: #fff;
 }
-
 .container { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
-
 /* ── SCHEDULE ── */
 .sched-section { padding: 64px 0 96px; }
 .day-switcher { display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: nowrap; }
@@ -89,7 +84,6 @@ body {
 .day-btn:active { transform: scale(0.95); }
 .day-panel { display: none; }
 .day-panel.active { display: block; }
-
 .sched-item { padding: 32px 0; border-top: 1px solid var(--divider-soft); display: flex; gap: 28px; align-items: baseline; }
 .sched-item:first-child { border-top: none; }
 .sched-time { font-size: 17px; font-weight: 600; letter-spacing: -0.374px; color: var(--pink); flex-shrink: 0; width: 140px; }
@@ -99,21 +93,34 @@ body {
 .sched-desc { font-size: 17px; font-weight: 400; color: var(--ink-80); margin-top: 6px; }
 .sched-venue { margin-top: 12px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-48); display: inline-flex; align-items: center; gap: 7px; }
 .sched-venue svg { color: var(--primary); flex-shrink: 0; }
-
 /* ── PROGRAM ── */
 .search-section { padding: 48px 0 0; }
-.search-box { background: var(--canvas); border: 1px solid var(--hairline); border-radius: 18px; padding: 20px 22px; transition: border-color .2s, box-shadow .2s; }
-.search-box:focus-within { border-color: var(--primary-focus); box-shadow: 0 0 0 4px rgba(0,113,227,.12); }
-.search-row { display: flex; align-items: center; gap: 12px; }
-.search-icon { color: var(--ink-48); flex-shrink: 0; }
+.search-heading { font-size: 22px; font-weight: 600; letter-spacing: -0.4px; color: var(--ink); margin-bottom: 14px; }
+.search-box {
+  background: linear-gradient(180deg, #f0f6ff 0%, #e8f1ff 100%);
+  border: 1.5px solid var(--primary);
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: 0 6px 24px rgba(0,102,204,.14);
+  transition: border-color .2s, box-shadow .2s;
+}
+.search-box:focus-within { border-color: var(--primary-focus); box-shadow: 0 8px 30px rgba(0,113,227,.22); }
+.search-row {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+.search-icon { color: var(--primary); flex-shrink: 0; }
 .search-input { flex: 1; min-width: 0; border: none; outline: none; font-family: inherit; font-size: 17px; font-weight: 400; letter-spacing: -0.374px; color: var(--ink); background: transparent; }
 .search-input::placeholder { color: var(--ink-48); }
 .search-clear { background: var(--parchment); border: none; border-radius: 9999px; padding: 7px 14px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80); cursor: pointer; display: none; flex-shrink: 0; }
-.search-results { display: none; margin-top: 20px; border-top: 1px solid var(--divider-soft); padding-top: 20px; }
+.search-results { display: none; margin-top: 20px; border-top: 1px solid rgba(0,102,204,.18); padding-top: 20px; }
 .search-results.visible { display: block; }
 .search-meta { font-size: 14px; letter-spacing: -0.224px; color: var(--ink-48); margin-bottom: 16px; }
 .search-meta strong { color: var(--primary); font-weight: 600; }
-.result-card { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-top: 1px solid var(--divider-soft); flex-wrap: wrap; }
+.result-card { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-top: 1px solid rgba(0,102,204,.14); flex-wrap: wrap; }
 .result-card:first-of-type { border-top: none; }
 .result-paper { font-weight: 600; font-size: 17px; color: var(--primary); min-width: 80px; letter-spacing: -0.374px; }
 .result-info { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
@@ -121,20 +128,17 @@ body {
 .result-badge svg { flex-shrink: 0; }
 .result-topic { display: inline-flex; align-items: center; border-radius: 9999px; padding: 5px 14px; font-size: 14px; letter-spacing: -0.224px; color: var(--tc); background: var(--tc-bg); }
 .search-not-found { text-align: center; padding: 28px; color: var(--ink-48); font-size: 17px; }
-
 .prog-intro { padding: 40px 0 0; }
 .section-label { font-size: 12px; font-weight: 600; letter-spacing: -0.12px; text-transform: uppercase; color: var(--ink-48); margin-bottom: 16px; }
 .legend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--divider-soft); border: 1px solid var(--divider-soft); border-radius: 18px; overflow: hidden; }
 .legend-card { background: var(--canvas); padding: 14px 16px; display: flex; align-items: stretch; gap: 14px; }
 .legend-num { width: 40px; flex-shrink: 0; border-radius: 10px; background: var(--tc); color: #fff; font-weight: 700; font-size: 20px; display: flex; align-items: center; justify-content: center; }
 .legend-label { font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80); line-height: 1.43; display: flex; align-items: center; }
-
 .prog-switcher { display: flex; gap: 8px; margin: 36px 0 0; flex-wrap: nowrap; }
 .prog-btn { flex: 1; min-width: 0; text-align: center; background: var(--canvas); border: 1px solid var(--hairline); border-radius: 9999px; padding: 11px 14px; font-size: 14px; font-weight: 400; letter-spacing: -0.224px; color: var(--ink-80); cursor: pointer; transition: all .2s; white-space: nowrap; }
 .prog-btn:hover { border-color: var(--primary); color: var(--primary); }
 .prog-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
 .prog-btn:active { transform: scale(0.95); }
-
 .timeline-wrap { padding: 36px 0 96px; }
 .prog-panel { display: none; }
 .prog-panel.active { display: block; }
@@ -154,7 +158,6 @@ body {
 .papers-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
 .p-code { background: var(--parchment); border-radius: 9999px; padding: 5px 13px; font-size: 14px; letter-spacing: -0.224px; color: var(--ink-80); white-space: nowrap; }
 .p-code.highlight { background: var(--primary); color: #fff; font-weight: 500; }
-
 /* ── ANNOUNCEMENTS ── */
 .news-section { padding: 48px 0 96px; }
 .news-postbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
@@ -174,7 +177,6 @@ body {
 .news-thumb img { width: 100%; height: 100%; max-height: 200px; object-fit: cover; display: block; }
 .news-readmore { margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--primary); letter-spacing: -0.224px; }
 .news-empty { text-align: center; padding: 64px 20px; color: var(--ink-48); font-size: 17px; }
-
 /* ── MODAL ── */
 .modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,.5); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; }
 .modal-overlay.open { display: flex; }
@@ -198,7 +200,6 @@ body {
 .modal-del-btn { background: transparent; color: var(--pink); border: 1px solid var(--pink); border-radius: 9999px; padding: 8px 18px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
 .modal-del-btn:hover { background: var(--pink); color: #fff; }
 .modal-del-btn:active { transform: scale(0.96); }
-
 /* ── POST FORM ── */
 .pf-field { margin-bottom: 16px; }
 .pf-field label { display: block; font-size: 13px; font-weight: 600; letter-spacing: -0.2px; color: var(--ink); margin-bottom: 6px; }
@@ -212,10 +213,8 @@ body {
 .pf-btn:active { transform: scale(0.97); }
 .pf-cancel { background: transparent; color: var(--ink-48); border: none; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 500; }
 .pf-error { color: var(--pink); font-size: 13px; margin-top: 12px; display: none; }
-
 /* ── FOOTER ── */
 footer { background: var(--parchment); padding: 48px 22px; text-align: center; font-size: 12px; letter-spacing: -0.12px; color: var(--ink-48); }
-
 /* ── RESPONSIVE ── */
 @media (max-width: 833px) {
   .hero h1 { font-size: 40px; }
@@ -237,24 +236,60 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
   .gn-tab { font-size: 11px; padding: 7px 10px; }
   .day-btn, .prog-btn { font-size: 12px; padding: 10px 6px; }
   .room-name { min-width: 0; }
+  .search-heading { font-size: 19px; }
 }
 </style>
 </head>
 <body>
-
 <nav class="global-nav">
   <div class="gn-inner">
     <div class="gn-logo">iSTEM-Ed <span>2026</span></div>
     <div class="gn-tabs">
-      <button class="gn-tab active" onclick="showPage('schedule', this)">Schedule</button>
-      <button class="gn-tab" onclick="showPage('program', this)">Presentation Program</button>
+      <button class="gn-tab active" onclick="showPage('program', this)">Presentation Program</button>
+      <button class="gn-tab" onclick="showPage('schedule', this)">Schedule</button>
       <button class="gn-tab" onclick="showPage('news', this)">Announcements</button>
     </div>
   </div>
 </nav>
-
+<!-- PROGRAM -->
+<div class="page active" id="page-program">
+  <div class="hero">
+    <div class="eyebrow">11th International Conference on STEM Education</div>
+    <h1>Presenter <em>LookUp</em></h1>
+    <p class="lead">Paper Presentation Program</p>
+    <div class="hero-meta">
+      <span class="meta-chip">July 16–17, 2026</span>
+      <span class="meta-chip">Chiangmai Rooms &amp; Board Rooms</span>
+      <span class="meta-chip">6 Sessions</span>
+    </div>
+  </div>
+  <div class="container">
+    <div class="search-section">
+      <div class="search-heading">Find Your Presentation</div>
+      <div class="search-box">
+        <div class="search-row">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.4-1.42 1.41-5.4-5.39A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+          <input class="search-input" id="searchInput" type="text" placeholder="Search Paper ID, e.g. P07670 or 670..." autocomplete="off" oninput="handleSearch(this.value)">
+          <button class="search-clear" id="clearBtn" onclick="clearSearch()">Clear</button>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
+    <div class="prog-intro">
+      <div class="section-label">Topic Categories</div>
+      <div class="legend-grid" id="legend"></div>
+    </div>
+    <div class="prog-switcher">
+      <button class="prog-btn active" onclick="switchProgDay(0,this)">Thursday · July 16</button>
+      <button class="prog-btn" onclick="switchProgDay(1,this)">Friday · July 17</button>
+    </div>
+    <div class="timeline-wrap">
+      <div id="prog-days"></div>
+    </div>
+  </div>
+</div>
 <!-- SCHEDULE -->
-<div class="page active" id="page-schedule">
+<div class="page" id="page-schedule">
   <div class="hero">
     <div class="eyebrow">11th International Conference on STEM Education</div>
     <h1>Presenter <em>LookUp</em></h1>
@@ -275,44 +310,6 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
     </div>
   </div>
 </div>
-
-<!-- PROGRAM -->
-<div class="page" id="page-program">
-  <div class="hero">
-    <div class="eyebrow">11th International Conference on STEM Education</div>
-    <h1>Presenter <em>LookUp</em></h1>
-    <p class="lead">Paper Presentation Program</p>
-    <div class="hero-meta">
-      <span class="meta-chip">July 16–17, 2026</span>
-      <span class="meta-chip">Chiangmai Rooms &amp; Board Rooms</span>
-      <span class="meta-chip">6 Sessions</span>
-    </div>
-  </div>
-  <div class="container">
-    <div class="search-section">
-      <div class="search-box">
-        <div class="search-row">
-          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M10 2a8 8 0 0 1 6.32 12.9l5.39 5.4-1.42 1.41-5.4-5.39A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
-          <input class="search-input" id="searchInput" type="text" placeholder="Search Paper ID, e.g. P07670 or 670…" autocomplete="off" oninput="handleSearch(this.value)">
-          <button class="search-clear" id="clearBtn" onclick="clearSearch()">Clear</button>
-        </div>
-        <div class="search-results" id="searchResults"></div>
-      </div>
-    </div>
-    <div class="prog-intro">
-      <div class="section-label">Topic Categories</div>
-      <div class="legend-grid" id="legend"></div>
-    </div>
-    <div class="prog-switcher">
-      <button class="prog-btn active" onclick="switchProgDay(0,this)">Thursday · July 16</button>
-      <button class="prog-btn" onclick="switchProgDay(1,this)">Friday · July 17</button>
-    </div>
-    <div class="timeline-wrap">
-      <div id="prog-days"></div>
-    </div>
-  </div>
-</div>
-
 <!-- ANNOUNCEMENTS -->
 <div class="page" id="page-news">
   <div class="hero">
@@ -323,13 +320,12 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
   <div class="container">
     <div class="news-section">
       <div class="news-postbar">
-        <button class="news-post-btn" onclick="openPostForm()">＋ New Post</button>
+        <button class="news-post-btn" onclick="openPostForm()">+ New Post</button>
       </div>
       <div class="news-feed" id="news-feed"></div>
     </div>
   </div>
 </div>
-
 <!-- READ MODAL -->
 <div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal">
@@ -353,7 +349,6 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
     </div>
   </div>
 </div>
-
 <!-- POST FORM MODAL -->
 <div class="modal-overlay" id="post-modal" onclick="if(event.target===this)closePostForm()">
   <div class="modal">
@@ -368,12 +363,12 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
       </div>
       <div class="pf-field">
         <label>Content *</label>
-        <textarea id="pf-body" placeholder="Type your announcement… links are supported."></textarea>
+        <textarea id="pf-body" placeholder="Type your announcement... links are supported."></textarea>
         <div class="pf-hint">Links become clickable · line breaks are preserved</div>
       </div>
       <div class="pf-field">
         <label>Google Drive image link (optional)</label>
-        <input type="text" id="pf-image" placeholder="Paste the Drive share link…">
+        <input type="text" id="pf-image" placeholder="Paste the Drive share link...">
         <div class="pf-hint">In Drive: Share → set to "Anyone with the link" → Copy link → paste here. The image is auto-scaled to fit.</div>
       </div>
       <div class="pf-field">
@@ -388,9 +383,7 @@ footer { background: var(--parchment); padding: 48px 22px; text-align: center; f
     </div>
   </div>
 </div>
-
 <footer>iSTEM-Ed 2026 · International STEM Education Conference · Suan Sunandha Rajabhat University</footer>
-
 <script>
 function fmt(h){ const hh=Math.floor(h), mm=Math.round((h-hh)*60); return `${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`; }
 function showPage(id, btn){
@@ -401,9 +394,7 @@ function showPage(id, btn){
   if (btn) btn.classList.add('active');
   window.scrollTo(0,0);
 }
-
 const PIN = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
-
 /* ── SCHEDULE DATA ── */
 const SCHED = [
   { day:"Wednesday, July 15, 2026", items:[
@@ -422,7 +413,7 @@ const SCHED = [
     { start:13,    end:14.75, title:"Parallel Session II",  desc:"Paper presentations by conference authors.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1-5" },
     { start:14.75, end:15.05, title:"Coffee Break",         desc:"", venue:"Empress Convention Center 2nd Fl." },
     { start:15.05, end:17.5,  title:"Parallel Session III", desc:"Paper presentations by conference authors.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1-5" },
-    { start:18,    end:22,    title:"Banquet & Awarding",   desc:"Gala dinner honoring excellence in STEM education.", venue:"Empress, Imperial Ballroom", highlight:true },
+    { start:18,    end:22,    title:"Banquet & Awarding",   desc:"Gala dinner honoring excellence in STEM education.", venue:"Empress Convention Center 3rd Fl., Empress Grand Hall", highlight:true },
   ]},
   { day:"Friday, July 17, 2026", items:[
     { start:8.2,  end:10,  title:"Parallel Session IV",       desc:"Paper presentations by conference authors.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1-5" },
@@ -432,7 +423,6 @@ const SCHED = [
     { start:13,   end:15,  title:"Session Presentations VI",  desc:"Paper presentations by conference authors.", venue:"Empress Convention Center 2nd Fl., Chiangmai 1-5" },
   ]},
 ];
-
 const schedDaysEl = document.getElementById('sched-days');
 SCHED.forEach((day, di) => {
   let html = `<div class="day-panel${di===0?' active':''}" id="sched-day-${di}">`;
@@ -457,7 +447,6 @@ function switchSchedDay(idx, btn){
   document.getElementById('sched-day-'+idx).classList.add('active');
   if (btn) btn.classList.add('active');
 }
-
 /* ── PROGRAM DATA ── */
 const TOPICS = {
   1:{ color:"var(--t1)", bg:"var(--t1-bg)", short:"Technology-Enhanced STEM", full:"Technology-Enhanced STEM Teaching and Learning" },
@@ -514,12 +503,10 @@ const PROG_DATA = [
     ]},
   ]},
 ];
-
 const legendEl = document.getElementById('legend');
 Object.entries(TOPICS).forEach(([num, t]) => {
   legendEl.innerHTML += `<div class="legend-card" style="--tc:${t.color}"><div class="legend-num">${num}</div><div class="legend-label">${t.full}</div></div>`;
 });
-
 const progDaysEl = document.getElementById('prog-days');
 PROG_DATA.forEach((day, di) => {
   let html = `<div class="prog-panel${di===0?' active':''}" id="prog-day-${di}">`;
@@ -548,7 +535,6 @@ function switchProgDay(idx, btn){
   document.getElementById('prog-day-'+idx).classList.add('active');
   if (btn) btn.classList.add('active');
 }
-
 /* ── SEARCH ── */
 function handleSearch(raw){
   const q = raw.trim().toUpperCase();
@@ -579,10 +565,8 @@ function handleSearch(raw){
   setTimeout(() => { document.querySelectorAll('.p-code').forEach(el => { if (el.textContent.trim().toUpperCase().includes(q)) el.classList.add('highlight'); }); }, 50);
 }
 function clearSearch(){ document.getElementById('searchInput').value=''; handleSearch(''); document.getElementById('searchInput').focus(); }
-
 /* ═══ ANNOUNCEMENTS (Firebase Firestore) ═══ */
 window.NEWS = window.NEWS || [];
-
 function escapeHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function linkify(s){ return escapeHtml(s).replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>'); }
 function driveImageUrl(url){
@@ -594,7 +578,6 @@ function driveImageUrl(url){
   if (m) return `https://drive.google.com/thumbnail?id=${m[1]}&sz=w1200`;
   return url;
 }
-
 function renderNews(){
   const feed = document.getElementById('news-feed');
   if (!feed) return;
@@ -609,7 +592,6 @@ function renderNews(){
       <div class="news-readmore">Read more →</div>
     </div>`).join('');
 }
-
 let currentPostIndex = -1;
 function openModal(i){
   const n = (window.NEWS || [])[i];
@@ -625,7 +607,6 @@ function openModal(i){
   document.body.style.overflow = 'hidden';
 }
 function closeModal(){ document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; }
-
 async function deleteCurrentPost(){
   const n = (window.NEWS || [])[currentPostIndex];
   if (!n || !n.id){ alert('Cannot delete this post.'); return; }
@@ -636,7 +617,6 @@ async function deleteCurrentPost(){
   try { await window.fbDeletePost(n.id); closeModal(); }
   catch(e){ console.error(e); alert('Could not delete. Please try again.'); }
 }
-
 function editCurrentPost(){
   const n = (window.NEWS || [])[currentPostIndex];
   if (!n || !n.id){ alert('Cannot edit this post.'); return; }
@@ -652,7 +632,6 @@ function editCurrentPost(){
   document.getElementById('post-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
 /* ── POST FORM ── */
 const POST_PASSWORD = "eit1234";
 let editingId = null;
@@ -678,7 +657,7 @@ async function submitPost(){
   if (!window.fbAddPost){ err.textContent='Connection not ready. Please wait a moment and try again.'; err.style.display='block'; return; }
   err.style.display='none';
   const origLabel = editingId ? 'Save Changes' : 'Post';
-  if (btn){ btn.textContent = editingId ? 'Saving…' : 'Posting…'; btn.disabled=true; }
+  if (btn){ btn.textContent = editingId ? 'Saving...' : 'Posting...'; btn.disabled=true; }
   try {
     if (editingId){ await window.fbUpdatePost(editingId, { title, body, image }); }
     else {
@@ -692,15 +671,12 @@ async function submitPost(){
     err.style.display='block';
   } finally { if (btn){ btn.textContent=origLabel; btn.disabled=false; } }
 }
-
 document.addEventListener('keydown', e => { if (e.key === 'Escape'){ closeModal(); closePostForm(); } });
 </script>
-
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
   import { getFirestore, collection, addDoc, deleteDoc, updateDoc, doc, onSnapshot, query, orderBy, serverTimestamp }
     from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
   const firebaseConfig = {
     apiKey: "AIzaSyDd6CByeddq-u-IJg6G7QpYj8ZK-DNOZ-I",
     authDomain: "istem-ed-2026.firebaseapp.com",
@@ -709,11 +685,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape'){ closeModal(
     messagingSenderId: "124698840434",
     appId: "1:124698840434:web:7aad78831cf7292aa3e1eb"
   };
-
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const colRef = collection(db, "announcements");
-
   const qy = query(colRef, orderBy("createdAt", "desc"));
   onSnapshot(qy, (snap) => {
     window.NEWS = snap.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -723,7 +697,6 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape'){ closeModal(
     const feed = document.getElementById('news-feed');
     if (feed) feed.innerHTML = '<div class="news-empty">Unable to load announcements. Please refresh.</div>';
   });
-
   window.fbAddPost = async (data) => { await addDoc(colRef, { ...data, createdAt: serverTimestamp() }); };
   window.fbDeletePost = async (id) => { await deleteDoc(doc(db, "announcements", id)); };
   window.fbUpdatePost = async (id, data) => { await updateDoc(doc(db, "announcements", id), data); };
